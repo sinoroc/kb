@@ -1,0 +1,16 @@
+#
+
+
+image: 'python:3.6'
+
+pages:
+    script:
+        - 'pip install tox'
+        - 'tox -r -e build'
+        - 'cp -r build/html public'
+    artifacts:
+        paths:
+            - 'public'
+
+
+# EOF
