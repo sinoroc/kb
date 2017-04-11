@@ -4,6 +4,7 @@
 build_dir := build
 source_dir := src
 sphinx_build := sphinx-build
+sphinx_options := -n -W
 
 
 .DEFAULT_GOAL := all
@@ -16,7 +17,7 @@ clean:
 
 .PHONY: html
 html:
-	$(sphinx_build) -b $@ $(source_dir) $(build_dir)/$@
+	$(sphinx_build) $(sphinx_options) -b $@ $(source_dir) $(build_dir)/$@
 
 
 .PHONY: nothing
