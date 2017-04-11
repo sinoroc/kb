@@ -4,7 +4,7 @@
 build_dir := build
 source_dir := src
 sphinx_build := sphinx-build
-sphinx_options := -n -W
+sphinx_options := -c . -n -W
 
 
 .DEFAULT_GOAL := all
