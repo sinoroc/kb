@@ -38,6 +38,17 @@ Defaults
 Development environment
 =======================
 
+It is a good idea to setup an environment for interactive use. The purpose of
+this environment is to be actually activated from the interactive shell in
+order to do the actual development.
+
+The commands should be relatively neutral. There is no need to trigger any test
+suite or linting, since those should be triggered manually once the environment
+is active.
+
+The environment should contain the dependencies for all use cases: test, build,
+distribute, of course install, and then eventually some more to develop.
+
 .. code-block:: ini
     :caption: tox.ini
 
