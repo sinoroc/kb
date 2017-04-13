@@ -7,7 +7,7 @@ Table of contents
 
 
 .. toctree::
-    Introduction <index>
+    index
 
     python/index
 

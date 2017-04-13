@@ -1,11 +1,11 @@
 ..
 
 
-##########
-Sinoroc KB
-##########
+########
+Foreword
+########
 
-Loosely structured bits of knowledge.
+Loosely structured bits of knowledge
 
 .. only:: html
 
