@@ -10,6 +10,7 @@ Table of contents
     index
 
     python/index
+    docker/index
 
     about
 
