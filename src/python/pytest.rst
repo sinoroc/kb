@@ -16,15 +16,20 @@ http://pytest.org/
 ``pep8`` and ``pylint``
 =======================
 
+Use the plugins `pytest-pep8 <https://pypi.python.org/pypi/pytest-pep8>`_ and
+`pytest-pylint <https://pypi.python.org/pypi/pytest-pylint>`_.
+
 .. sidebar:: ``pep8`` vs. ``pycodestyle``
 
-    The Python project ``pep8`` has actually be renamed to ``pycodestyle``. But
-    there is no ``pytest-pycodestyle`` project yet.
+    The Python project ``pep8`` has been
+    `renamed <https://github.com/PyCQA/pycodestyle/issues/466>`_ to
+    ``pycodestyle``. But there is no ``pytest-pycodestyle`` project yet.
 
     https://bitbucket.org/pytest-dev/pytest-pep8/issues/15
 
-
-Use the plugins ``pytest-pep8`` and ``pytest-pylint``.
+With these plugins the linting operations are completely integrated within the
+test workflow. The results of the tests and linting operations are rendered
+in a consistent format.
 
 
 ``pep8`` only
