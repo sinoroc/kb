@@ -105,7 +105,7 @@ The dependencies can be specified via a ``pip`` ``requirements.txt`` file.
 .. code-block:: console
     :caption: shell console
 
-    $ pex --requirement=requirements/build.txt
+    $ pex --requirement=requirements.txt
 
 ``pex`` also allows to specify an entry point that should be executed from
 within the virtual environment.
@@ -175,7 +175,7 @@ Requirements
 ------------
 
 For a stricter control over the dependencies added to the ``pex`` file, a
-``requirements`` file can be specified via the ``--pex-args`` option.
+``requirements.txt`` file can be specified via the ``--pex-args`` option.
 
 .. code-block:: console
     :caption: shell console
