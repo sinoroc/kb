@@ -7,10 +7,10 @@ Python
 
 
 .. toctree::
-    packaging.rst
-    pytest.rst
-    tox.rst
-    pex.rst
+    packaging
+    pytest
+    tox
+    pex
 
 
 .. EOF
