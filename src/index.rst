@@ -10,8 +10,12 @@ Loosely structured bits of knowledge
 .. only:: html
 
     .. hlist::
+        :columns: 6
+
         * :doc:`contents`
         * :ref:`search`
+        * :doc:`about`
+        * :doc:`license`
 
     **Main topics**
 

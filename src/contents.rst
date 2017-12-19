@@ -13,6 +13,7 @@ Table of contents
     docker/index
 
     about
+    license
 
 
 .. EOF
