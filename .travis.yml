@@ -1,0 +1,34 @@
+#
+
+
+language: 'python'
+
+
+install:
+  - 'pip install tox'
+
+script:
+  - 'tox -e build'
+  - 'touch build/html/.nojekyll'
+
+deploy:
+  - provider: 'pages'
+    skip_cleanup: true
+    on:
+      branch: 'master'
+    local_dir: 'build/html'
+    github_token:
+      secure: "\
+        rBBDOwDxIqpe6o++250oHIxQcZws20MN0feqNgk2IGEpZrfLICby4ivFynC0U98XYuC9iF\
+        J8hjGJbIlxSgpOTXP2jxVIOftiNZfwOrAvImd8Fgd0ykrVZg5X4A0EVNzRiSZwv/JVOxWe\
+        9obuU8V1c2RY7yiqdl7MvSjNHOkdMJVNO6aU6GaUUntaJt6dJZG5Qn6vz4x7rFQwB1Jl1p\
+        j/H42JKfbp0Cg6u4beMeKw9vYYimcZ1hZ6KMq4a0pC38gSaZVPEiy8NFLScV8YUpuLTAGa\
+        p5jRIHE3eN4xihXh8UGaD4Dx0uZQvqj2bEIqDV27W1609q6OuhnLubrdzDJNz/7RgcGvlK\
+        4qdGQbgPx2312cS2S2N2EYJl03oXXxWsUPke8fShEyrreterHwC6D3oieclsHS9HKpFv2j\
+        1ujWBzRaUFFOC+ufwLFNKKM1TCzXI8QLljAHBO5zFW+/uMznymKLbWGm/hpccE9HIzXwUZ\
+        2CpJRkpf2bo9ZS3Qfa+kYjVomLe31tQKr9c/6ZXapKcw3qks5N0oox6Vo30F1aajLhHp9k\
+        6FvnacLmQ/hfZoXdBz+yLE6xh4QGTK305WPD7BHwsDP/IMSPyUYctd9sin4ZRpoRb1jibv\
+        9A1QymKua/t7yxPjyF3JafwTTjnjc55LWfoVOnLHKv2ddyWDsgjAs="
+
+
+# EOF
