@@ -6,12 +6,28 @@ Introduction
 
 Written in
 `reStructuredText <http://docutils.sourceforge.net/rst.html>`_
-built with
+and built with
 `Sphinx <http://www.sphinx-doc.org/en/stable/index.html>`_.
+
+
+Mirrors
+-------
+
+* https://sinoroc.gitlab.io/kb/
+
+* https://sinoroc.github.io/kb/
 
 
 Hacking
 =======
+
+Repositories
+------------
+
+* https://gitlab.com/sinoroc/kb
+
+* https://github.com/sinoroc/kb
+
 
 Style guide
 -----------
