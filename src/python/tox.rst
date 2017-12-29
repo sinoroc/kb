@@ -1,9 +1,9 @@
 ..
 
 
-*******
-``tox``
-*******
+***
+tox
+***
 
 Introduction
 ============
@@ -65,8 +65,8 @@ distribute, of course install, and then eventually some more to develop.
 Notes
 =====
 
-``setuptools`` and ``sdist``
-----------------------------
+setuptools and sdist
+--------------------
 
 ``tox`` builds the ``sdist`` independently from the virtual environments. So it
 is not directly possible to specify which version of ``setuptools`` should be

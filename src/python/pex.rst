@@ -1,9 +1,9 @@
 ..
 
 
-*******
-``pex``
-*******
+***
+pex
+***
 
 
 Introduction
@@ -128,6 +128,7 @@ environment into a single file.
     $ ./server.pex
     Serving HTTP on 0.0.0.0 port 8000 ...
 
+
 Inspect
 =======
 
@@ -145,8 +146,8 @@ are included. Nothing more and nothing less should be found in the ``.deps``
 directory.
 
 
-``setuptools``
-==============
+setuptools
+==========
 
 To easily build a ``pex`` executable with ``setuptools`` use the ``bdist_pex``
 command. ``bdist_pex`` will use the ``console_scripts`` entry point bearing the

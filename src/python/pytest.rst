@@ -1,9 +1,9 @@
 ..
 
 
-**********
-``pytest``
-**********
+******
+pytest
+******
 
 Introduction
 ============
@@ -13,13 +13,13 @@ Python test runner
 http://pytest.org/
 
 
-``pep8`` and ``pylint``
-=======================
+pycodestyle and pylint
+======================
 
 Use the plugins `pytest-pep8 <https://pypi.python.org/pypi/pytest-pep8>`_ and
 `pytest-pylint <https://pypi.python.org/pypi/pytest-pylint>`_.
 
-.. sidebar:: ``pep8`` vs. ``pycodestyle``
+.. sidebar:: pep8 vs. pycodestyle
 
     The Python project ``pep8`` has been
     `renamed <https://github.com/PyCQA/pycodestyle/issues/466>`_ to
@@ -32,8 +32,8 @@ test workflow. The results of the tests and linting operations are rendered
 in a consistent format.
 
 
-``pep8`` only
--------------
+pep8 only
+---------
 
 Run only the ``pep8`` linting.
 
@@ -43,8 +43,8 @@ Run only the ``pep8`` linting.
     $ pytest --pep8 -m pep8
 
 
-``pylint`` only
----------------
+pylint only
+-----------
 
 Run only the ``pylint`` linting.
 
@@ -54,8 +54,8 @@ Run only the ``pylint`` linting.
     $ pytest --pylint -m pylint
 
 
-Both ``pep8`` and ``pylint``
-----------------------------
+Both pep8 and pylint
+--------------------
 
 Run both linting tools but not the tests themselves.
 
