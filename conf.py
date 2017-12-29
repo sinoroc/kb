@@ -34,12 +34,6 @@ html_sidebars = {
         'about.html',
         'globaltoc.html',
     ],
-    'contents': [
-        'about.html',
-    ],
-    'index': [
-        'about.html',
-    ],
 }
 
 html_theme = 'alabaster'
