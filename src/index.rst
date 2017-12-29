@@ -14,8 +14,8 @@ Loosely structured bits of knowledge
 
         * :doc:`contents`
         * :ref:`search`
-        * :doc:`about`
-        * :doc:`license`
+        * :doc:`appendix/about`
+        * :doc:`appendix/license`
 
     **Main topics**
 

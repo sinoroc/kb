@@ -14,8 +14,7 @@ Table of contents
     python/index
     docker/index
 
-    about
-    license
+    appendix/index
 
 
 .. EOF
