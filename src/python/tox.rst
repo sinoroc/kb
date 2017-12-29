@@ -5,6 +5,11 @@
 tox
 ***
 
+.. contents::
+    :backlinks: none
+    :local:
+
+
 Introduction
 ============
 

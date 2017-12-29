@@ -6,6 +6,8 @@ Docker
 ######
 
 .. toctree::
+    :titlesonly:
+
     presentation
     tips
 

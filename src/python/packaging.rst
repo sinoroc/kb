@@ -5,6 +5,11 @@
 Python packaging
 ****************
 
+.. contents::
+    :backlinks: none
+    :local:
+
+
 Introduction
 ============
 

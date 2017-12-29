@@ -5,6 +5,11 @@
 pytest
 ******
 
+.. contents::
+    :backlinks: none
+    :local:
+
+
 Introduction
 ============
 

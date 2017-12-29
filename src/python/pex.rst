@@ -5,6 +5,10 @@
 pex
 ***
 
+.. contents::
+    :backlinks: none
+    :local:
+
 
 Introduction
 ============
