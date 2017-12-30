@@ -3,8 +3,8 @@
 
 
 MASTER_DOCUMENT = 'contents'
-TITLE = "Sinoroc KB"
 SUBTITLE = "Bits of knowledge"
+TITLE = "Sinoroc KB"
 
 
 # 
@@ -12,6 +12,10 @@ SUBTITLE = "Bits of knowledge"
 #
 
 master_doc = MASTER_DOCUMENT
+
+templates_path = [
+    'src/_templates',
+]
 
 
 #
@@ -36,7 +40,6 @@ html_sidebars = {
     ],
 }
 
-html_theme = 'alabaster'
 html_theme_options = {
     'description': SUBTITLE,
 }
