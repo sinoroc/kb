@@ -13,7 +13,7 @@ pex
 Introduction
 ============
 
-In a couple of words ``pex`` helps create *self-contained executable Python
+In a couple of words: ``pex`` helps create *self-contained executable Python
 virtual environments*.
 
 https://pex.readthedocs.io/
