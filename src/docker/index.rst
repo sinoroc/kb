@@ -24,7 +24,7 @@ Playground
 ==========
 
 Play with Docker in the web browser:
-http://play-with-docker.com/
+https://labs.play-with-docker.com/
 
 
 .. EOF
