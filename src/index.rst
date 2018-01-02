@@ -15,4 +15,10 @@ Loosely structured bits of knowledge
 * :doc:`python/packaging`
 
 
+.. rubric:: Author
+
+* https://sinoroc.gitlab.io
+* https://sinoroc.github.io
+
+
 .. EOF
