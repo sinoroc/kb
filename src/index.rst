@@ -5,7 +5,7 @@
 Foreword
 ########
 
-Loosely structured bits of knowledge
+*Loosely structured bits of knowledge*
 
 
 .. rubric:: Selected chapters
