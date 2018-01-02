@@ -17,8 +17,8 @@ Foreword
 
 .. rubric:: Author
 
-* https://sinoroc.gitlab.io
-* https://sinoroc.github.io
+* `sinoroc.gitlab.io <https://sinoroc.gitlab.io>`_
+* `sinoroc.github.io <https://sinoroc.github.io>`_
 
 
 .. EOF
