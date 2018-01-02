@@ -37,6 +37,7 @@ html_sidebars = {
     '**': [
         'about.html',
         'globaltoc.html',
+        'searchbox.html',
     ],
 }
 
