@@ -78,4 +78,32 @@ is not directly possible to specify which version of ``setuptools`` should be
 used to build the ``sdist``.
 
 
+GitLab CI
+---------
+
+.. code-block:: yaml
+    :caption: .gitlab-ci.yml
+
+    '.test_common': &job_test_common
+      script:
+        - 'JOB_NAME=( ${CI_JOB_NAME} )'
+        - 'export TOXENV="${JOB_NAME[1]}"'
+        - 'pip install tox'
+        - 'tox'
+
+    'test py35':
+      <<: *job_test_common
+      image: 'python:3.5'
+
+    'test py36':
+      <<: *job_test_common
+      image: 'python:3.6'
+
+
+The job name is read as a ``bash`` array split at the whitespaces. The second
+item is one of the names automatically recognised by ``tox``. This name is set
+in the ``TOXENV`` environment variable, that ``tox`` reads to choose which
+virtual environment should be used.
+
+
 .. EOF
