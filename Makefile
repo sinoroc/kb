@@ -15,9 +15,14 @@ clean:
 	$(RM) --recursive $(build_dir)/*
 
 
-.PHONY: html
-html:
+.PHONY: html latex
+html latex:
 	$(sphinx_build) $(sphinx_options) -b $@ $(source_dir) $(build_dir)/$@
+
+
+.PHONY: pdf
+pdf: latex
+	$(MAKE) -C $(build_dir)/$<
 
 
 .PHONY: nothing
@@ -26,7 +31,7 @@ nothing:
 
 
 .PHONY: all
-all: html
+all: html latex pdf
 
 
 # EOF
