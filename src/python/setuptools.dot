@@ -1,0 +1,31 @@
+//
+
+
+digraph setuptools {
+    node [fontsize=10]
+    edge [fontsize=8]
+    "install" -> "bdist_egg" [label="install"]
+    "install" -> "install_lib" [label="bdist,bdist_dumb,bdist_wheel"]
+    "build" -> "build_py"
+    "build_py" -> "egg_info"
+    "bdist_egg" -> "egg_info"
+    "bdist_egg" -> "install_lib"
+    "install_egg_info" -> "egg_info"
+    "install_lib" -> "build_py" [label="bdist_egg,install,install_lib"]
+    "install_lib" -> "install_egg_info" [label="bdist,bdist_dumb,bdist_wheel"]
+    "install_egg_info" -> "install_scripts"
+    "bdist_dumb" -> "build"
+    "bdist_dumb" -> "install"
+    "bdist_wheel" -> "build"
+    "bdist_wheel" -> "install"
+    "bdist" -> "bdist_dumb"
+    "sdist" -> "egg_info"
+    "sdist" -> "check"
+    "develop" -> "build_ext"
+    "develop" -> "egg_info"
+    "test" -> "egg_info"
+    "test" -> "build_ext"
+}
+
+
+// EOF

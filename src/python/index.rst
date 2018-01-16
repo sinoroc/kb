@@ -14,6 +14,7 @@ Python
     pytest
     tox
     pex
+    setuptools
 
 
 .. EOF

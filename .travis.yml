@@ -3,6 +3,10 @@
 
 language: 'python'
 
+addons:
+  apt:
+    packages:
+      - 'graphviz'
 
 install:
   - 'pip install tox'

@@ -12,6 +12,10 @@ TITLE = "Sinoroc KB"
 # General
 #
 
+extensions = [
+    'sphinx.ext.graphviz',
+]
+
 master_doc = MASTER_DOCUMENT
 
 templates_path = [

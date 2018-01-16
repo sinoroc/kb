@@ -1,18 +1,20 @@
 #
 
 
-image: 'python:3.6'
-
 pages:
-    script:
-        - 'pip install tox'
-        - 'tox -e build'
-        - 'cp -r build/html public'
-    artifacts:
-        paths:
-            - 'public'
-    only:
-      - 'master'
+  image: 'python:3.6'
+  before_script:
+    - 'apt-get --assume-yes --quiet update'
+    - 'apt-get --assume-yes --quiet install --no-install-recommends graphviz'
+    - 'pip install tox'
+  script:
+    - 'tox -e build'
+    - 'cp -r build/html public'
+  artifacts:
+    paths:
+      - 'public'
+  only:
+    - 'master'
 
 
 # EOF
