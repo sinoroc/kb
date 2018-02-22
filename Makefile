@@ -16,6 +16,7 @@ clean:
 
 
 .PHONY: html latex
+html: pdf
 html latex:
 	$(sphinx_build) $(sphinx_options) -b $@ $(source_dir) $(build_dir)/$@
 

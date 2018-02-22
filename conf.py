@@ -18,6 +18,10 @@ extensions = [
 
 master_doc = MASTER_DOCUMENT
 
+suppress_warnings = [
+    'download.not_readable',
+]
+
 templates_path = [
     'src/_templates',
 ]

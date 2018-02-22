@@ -21,4 +21,12 @@ Foreword
 * `sinoroc.github.io <https://sinoroc.github.io>`_
 
 
+.. only:: html
+
+    .. rubric:: PDF
+
+    It is possible to download the
+    :download:`knowledge base as PDF document <../build/latex/sinorockb.pdf>`.
+
+
 .. EOF
