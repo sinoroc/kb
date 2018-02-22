@@ -7,6 +7,10 @@ addons:
   apt:
     packages:
       - 'graphviz'
+      - 'latexmk'
+      - 'texlive-fonts-recommended'
+      - 'texlive-latex-extra'
+      - 'texlive-latex-recommended'
 
 install:
   - 'pip install tox'

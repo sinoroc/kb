@@ -5,7 +5,12 @@ pages:
   image: 'python:3.6'
   before_script:
     - 'apt-get --assume-yes --quiet update'
-    - 'apt-get --assume-yes --quiet install --no-install-recommends graphviz'
+    - 'apt-get --assume-yes --quiet install --no-install-recommends
+      graphviz
+      latexmk
+      texlive-fonts-recommended
+      texlive-latex-extra
+      texlive-latex-recommended'
     - 'pip install tox'
   script:
     - 'tox -e build'

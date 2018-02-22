@@ -31,7 +31,7 @@ nothing:
 
 
 .PHONY: all
-all: html latex pdf
+all: html pdf
 
 
 # EOF
