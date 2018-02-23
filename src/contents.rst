@@ -13,6 +13,7 @@ Table of contents
 
     python/index
     docker/index
+    misc/index
 
     appendix/index
 

@@ -13,6 +13,7 @@ Foreword
 * :doc:`python/project_version`
 * :doc:`python/pex`
 * :doc:`python/packaging`
+* :doc:`misc/makefile`
 
 
 .. rubric:: Author
