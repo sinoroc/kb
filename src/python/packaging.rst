@@ -16,8 +16,8 @@ Introduction
 About proper packaging of Python projects...
 
 
-Nomenclature
-============
+Terminology
+===========
 
 Module
 ------
@@ -28,6 +28,15 @@ gathered in a Python package.
 
 Package
 -------
+
+.. sidebar:: Confusion #1: Import package vs. distribution package
+
+    One of the biggest confusion in the Python packaging terminology is around
+    the meaning of the term *package*. Sometimes the terms *import package* and
+    *distribution package* are used to clarify this.
+
+It is sometimes named *import package*, as opposed to *distribution package*
+(see below).
 
 A Python package is a directory containing at least a Python package
 initializer: the ``__init__.py`` module. A package also usually contains
@@ -58,10 +67,13 @@ the root without tree-like package structure.
 Distribution
 ------------
 
-.. sidebar:: Python distribution vs. Python project distribution
+.. sidebar:: Confusion #2: Python distribution vs. Python project distribution
 
     *Project distributions* are not to be confused with *Python distributions*
     such as *CPython*, *Anaconda*, *SciPy*, etc.
+
+It is sometimes named *distribution package*, as opposed to *import package*
+(see above).
 
 A Python project distribution corresponds to a snapshot of a Python project
 that is distributed to other Python users. Each snapshot is labeled with a
@@ -100,13 +112,15 @@ Source distributions can be found in multiple formats::
 
 
 .. attention::
-    It is strongly recommended to always offer at least the *sdist* on PyPI.
-    It can always be used as a fall back in case the user can not find a
-    *bdist* suitable for its own target system.
 
-    It might not be straightforward but there is almost always a way to build
-    any *bdist* from the *sdist*. Whereas it is most likely impossible to
-    build a *bdist* from another.
+    It is strongly recommended to always offer at least the *sdist* of a Python
+    project (for example on PyPI). The reason is that it is always possible to
+    use the *sdist* on any platform. On the other hand it is most likely
+    impossible to use a *bdist* targetted for another platform.
+
+    So if no *bdist* of the project is available for the target platform, the
+    *sdist* can still be used and eventually a target specific *bdist* can be
+    built locally.
 
 
 Binary distribution
@@ -130,13 +144,14 @@ target system.
 Python package index
 --------------------
 
-The Python package index, commonly called *PyPI* is the main repository of
-Python project distributions.
+.. sidebar:: Confusion #3: About the PyPI name
 
-.. note::
     The name Python *package* index is confusing since PyPI does not directly
-    contains *packages*, but *project distributions*.
+    contains *packages*, but *distributions* of Python projects.
 
+
+The *Python package index*, commonly called *PyPI* is the main repository of
+Python project distributions.
 
 There are currently two instances of PyPI running in parallel:
 
