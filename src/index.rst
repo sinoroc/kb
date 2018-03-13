@@ -14,6 +14,7 @@ Foreword
 * :doc:`python/pex`
 * :doc:`python/packaging`
 * :doc:`misc/makefile`
+* :doc:`misc/html5`
 
 
 .. rubric:: Author
