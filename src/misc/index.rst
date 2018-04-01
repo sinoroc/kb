@@ -11,6 +11,7 @@ Miscellaneous
 
     html5
     makefile
+    npm
 
 
 .. EOF
