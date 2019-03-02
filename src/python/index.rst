@@ -9,6 +9,7 @@ Python
 .. toctree::
     :titlesonly:
 
+    package_data
     packaging
     project_version
     pytest
