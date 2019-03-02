@@ -21,7 +21,7 @@ The original purpose of the tool is to test the source distribution (``sdist``)
 of a Python project against multiple combinations of Python interpreters and
 Python dependencies.
 
-https://tox.readthedocs.io/
+* https://tox.readthedocs.io/
 
 
 Defaults
@@ -76,6 +76,28 @@ setuptools and sdist
 ``tox`` builds the ``sdist`` independently from the virtual environments. So it
 is not directly possible to specify which version of ``setuptools`` should be
 used to build the ``sdist``.
+
+Since ``tox`` version ``3.2.0`` the configuration option ``requires`` can help
+making sure that the version of ``setuptools`` is appropriate.
+
+* https://tox.readthedocs.io/en/3.2.0/config.html#confval-requires=LIST
+
+
+One step further is possible since version ``3.3.0`` and the configuration
+option ``isolated_build``.
+
+* https://tox.readthedocs.io/en/3.3.0/config.html#confval-isolated_build=True|False(default)
+
+
+tox-venv
+--------
+
+Since Python 3.3 the standard library includes the module ``venv`` that can
+replace the ``virtualenv`` package. Install ``tox-venv`` alongside ``tox`` to
+take advantage of this feature. See also the ``requires`` configuration option
+of ``tox`` to make sure ``tox-venv`` is available.
+
+* https://pypi.org/project/tox-venv/
 
 
 GitLab CI
