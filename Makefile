@@ -35,4 +35,10 @@ nothing:
 all: html pdf
 
 
+# Disable default rules and suffixes
+# (improve speed and avoid unexpected behaviour)
+MAKEFLAGS := --no-builtin-rules
+.SUFFIXES:
+
+
 # EOF
