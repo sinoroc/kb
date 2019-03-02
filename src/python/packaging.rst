@@ -151,11 +151,7 @@ Python package index
 
 
 The *Python package index*, commonly called *PyPI* is the main repository of
-Python project distributions.
-
-There are currently two instances of PyPI running in parallel:
-
-* https://pypi.python.org/pypi
+Python project distributions. It can be found at following URL:
 
 * https://pypi.org/
 
