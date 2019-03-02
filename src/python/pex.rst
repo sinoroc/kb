@@ -44,9 +44,9 @@ this:
     $ . pexenv/bin/activate
     (pexenv) $ pip install pex
     (pexenv) $ pex \
-    > 'pex==1.1.20' \
-    > requests 'wheel>=0.26.0,<0.30.0' 'setuptools>=5.7,<31.0' \
-    > --console-script=pex --output-file=~/bin/pex
+    > 'pex[requests,cachecontrol]' \
+    > --console-script=pex \
+    > --output-file=~/bin/pex
     (pexenv) $ deactivate
     $ rm --force --recursive pexenv
     $ which pex
