@@ -67,20 +67,22 @@ that the setup script can easily find it and extract it:
     )
 
 From the actual code of the project the version number should be accessed via
-``pkg_resources``. Knowing the name of the project it is easy to get the
+``importlib.metadata``. Knowing the name of the project it is easy to get the
 version string:
 
 .. code-block:: python
     :caption: src/example/__init__.py
-    :emphasize-lines: 2
+    :emphasize-lines: 3
 
-    __version__ = pkg_resources.get_distribution(
-        'Example',
-    ).version
+    import importlib.metadata
+
+    __version__ = importlib.metadata.version('Example')
 
 
-The ``pkg_resource`` is a top-level package of the ``setuptools`` project. So
-this project should be added as *install* dependency.
+The ``importlib.metadata`` package is part of the standard library starting
+with *Python 3.8*. For earlier versions use importlib-metadata_ instead.
+
+.. _importlib-metadata: https://pypi.org/project/importlib-metadata/
 
 As a positive side effect, changing the version number forces the project
 maintainer to modify the change log and thus they always get at least one
