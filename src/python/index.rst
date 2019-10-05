@@ -16,6 +16,7 @@ Python
     tox
     pex
     setuptools
+    chameleon
 
 
 .. EOF
