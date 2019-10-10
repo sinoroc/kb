@@ -10,7 +10,7 @@ Sectioning
 
 .. code-block:: html
 
-    <!doctype html>
+    <!DOCTYPE html>
     <html>
      <head>
       <title>Title</title>
@@ -41,7 +41,7 @@ Shortest valid HTML5 document:
 
 .. code-block:: html
 
-    <!doctype html><title>x</title>
+    <!DOCTYPE html><title>x</title>
 
 
 .. EOF
