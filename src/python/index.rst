@@ -17,6 +17,7 @@ Python
     pex
     setuptools
     chameleon
+    working
 
 
 .. EOF
