@@ -13,6 +13,15 @@ Further down is a minimal example showing how to achieve both:
   packages and ``file.not`` in none of them.
 
 
+.. sidebar:: ``file.bin`` and built files
+
+    Files such as ``file.bin`` are not in the original source code of the
+    project (i.e. not in the `git` source code repository for example) but
+    should still be installed. Typically these files are created during a build
+    step such as ``./setup.py build`` for example (think ``gettext`` ``*.mo``
+    messages catalogs).
+
+
 The gist of it is:
 
 * first and foremost, always thoroughly clean up the working directory between
