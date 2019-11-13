@@ -156,4 +156,12 @@ Python project distributions. It can be found at following URL:
 * https://pypi.org/
 
 
+References
+==========
+
+David Beazley "Modules and Packages:Live and Let Die!":
+
+*  http://www.dabeaz.com/modulepackage/ModulePackage.pdf
+
+
 .. EOF
