@@ -26,11 +26,6 @@ pdf: latex
 	$(MAKE) -C $(build_dir)/$<
 
 
-.PHONY: nothing
-nothing:
-	true
-
-
 .PHONY: all
 all: html pdf
 
