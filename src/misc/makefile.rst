@@ -12,6 +12,8 @@ Links
 
 * http://clarkgrubb.com/makefile-style-guide
 
+* http://gromnitsky.users.sourceforge.net/articles/notes-for-new-make-users/
+
 
 Example
 =======
