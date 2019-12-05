@@ -110,29 +110,24 @@ of ``tox`` to make sure ``tox-venv`` is available.
 GitLab CI
 ---------
 
+Automatically set the ``TOXENV`` environment variable based on the job name:
+
 .. code-block:: yaml
     :caption: .gitlab-ci.yml
 
-    '.test_common': &job_test_common
+    '.review':
       script:
-        - 'JOB_NAME=( ${CI_JOB_NAME} )'
-        - 'export TOXENV="${JOB_NAME[1]}"'
-        - 'pip install tox'
-        - 'tox'
+        - 'export TOXENV="${CI_JOB_NAME##review }"'
+        - 'python3 -m pip install tox'
+        - 'python3 -m tox'
 
-    'test py35':
-      <<: *job_test_common
-      image: 'python:3.5'
+    'review py37':
+      extends: '.review'
+      image: 'python:3.7'
 
-    'test py36':
-      <<: *job_test_common
-      image: 'python:3.6'
-
-
-The job name is read as a ``bash`` array split at the whitespaces. The second
-item is one of the names automatically recognised by ``tox``. This name is set
-in the ``TOXENV`` environment variable, that ``tox`` reads to choose which
-virtual environment should be used.
+    'review py38':
+      extends: '.review'
+      image: 'python:3.8'
 
 
 .. EOF
