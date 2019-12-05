@@ -99,6 +99,13 @@ of ``tox`` to make sure ``tox-venv`` is available.
 
 * https://pypi.org/project/tox-venv/
 
+.. code-block:: ini
+    :caption: tox.ini
+
+    [tox]
+    requires =
+        tox-venv
+
 
 GitLab CI
 ---------
