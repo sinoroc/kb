@@ -29,7 +29,7 @@ gathered in a Python package.
 Package
 -------
 
-.. sidebar:: Confusion #1: Import package vs. distribution package
+.. sidebar:: Confusion #1: *Import package* vs. *distribution package*
 
     One of the biggest confusion in the Python packaging terminology is around
     the meaning of the term *package*. Sometimes the terms *import package* and
@@ -38,12 +38,14 @@ Package
 It is sometimes named *import package*, as opposed to *distribution package*
 (see below).
 
-A Python package is a directory containing at least a Python package
-initializer: the ``__init__.py`` module. A package also usually contains
-multiple other modules.
+A Python package is a directory containing one or more Python modules.
+
+While it used to be mandatory, in more recent versions of Python a *package
+initializer* (the ``__init__.py`` module) is not strictly necessary to make an
+importable package out of a directory.
 
 It is possible for a package to contain other sub-packages in a tree-like
-structure. The outermost package is then called the top-level package.
+structure. The outermost package is then called the *top-level package*.
 
 
 Project
@@ -54,6 +56,12 @@ is intended to be distributed as a single unit. Typically a Python project is a
 library, an application, a plugin, a framework, or a toolkit. In most cases
 this corresponds to a single source code repository (for example a *git*,
 *SVN*, or *CVS* repository).
+
+.. sidebar:: Multiple *top-level* packages and modules
+
+    For example *setuptools* (version ``46.1.2`` as of this writing) has two
+    *top-level packages* ``setuptools`` and ``pkg_resources``. It additionally
+    seems to have one *top-level module* ``easy_install``.
 
 It is not often the case, but a Python project can contain multiple top-level
 packages. So of course the name of a top-level package is not always the same
