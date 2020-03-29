@@ -18,6 +18,7 @@ Python
     setuptools
     chameleon
     working
+    fizz_buzz
 
 
 .. EOF
