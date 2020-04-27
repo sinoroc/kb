@@ -117,7 +117,7 @@ Automatically set the ``TOXENV`` environment variable based on the job name:
 
     '.review':
       script:
-        - 'export TOXENV="${CI_JOB_NAME##review }"'
+        - 'export TOXENV="${CI_JOB_NAME##review}"'
         - 'python3 -m pip install tox'
         - 'python3 -m tox'
 
