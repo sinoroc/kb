@@ -81,4 +81,50 @@ to call such scripts.
     $ .venv/bin/python3 -m mymodule
 
 
+Interactive debug
+-----------------
+
+* https://docs.python.org/3/library/functions.html#breakpoint
+
+.. code::
+
+    breakpoint()
+
+
+* https://docs.python.org/3/using/cmdline.html#cmdoption-i
+
+.. code::
+
+    python -i main.py
+
+    python -i -m something
+
+
+* https://stackoverflow.com/a/1396386/11138259
+
+.. code::
+
+    import pdb; pdb.set_trace()
+
+
+Then:
+
+* https://docs.python.org/3/library/pdb.html#pdbcommand-interact
+
+.. code::
+
+    (Pdb) interact
+    *interactive*
+    >>>
+
+
+Or:
+
+* https://docs.python.org/3/library/code.html#code.interact
+
+.. code::
+
+    import code; code.interact(local=locals())
+
+
 .. EOF
