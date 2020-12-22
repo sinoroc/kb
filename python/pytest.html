@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pytest &#8212; Sinoroc KB</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="tox" href="tox.html" />
+    <link rel="prev" title="Python imports" href="python_imports.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="pytest">
+<h1>pytest<a class="headerlink" href="#pytest" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#introduction" id="id5">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#pycodestyle-and-pylint" id="id6">pycodestyle and pylint</a></p>
+<ul>
+<li><p><a class="reference internal" href="#pep8-only" id="id7">pep8 only</a></p></li>
+<li><p><a class="reference internal" href="#pylint-only" id="id8">pylint only</a></p></li>
+<li><p><a class="reference internal" href="#both-pep8-and-pylint" id="id9">Both pep8 and pylint</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Python test runner</p>
+<p><a class="reference external" href="http://pytest.org/">http://pytest.org/</a></p>
+</div>
+<div class="section" id="pycodestyle-and-pylint">
+<h2>pycodestyle and pylint<a class="headerlink" href="#pycodestyle-and-pylint" title="Permalink to this headline">¶</a></h2>
+<p>Use the plugins <a class="reference external" href="https://pypi.python.org/pypi/pytest-pep8">pytest-pep8</a> and
+<a class="reference external" href="https://pypi.python.org/pypi/pytest-pylint">pytest-pylint</a>.</p>
+<div class="sidebar">
+<p class="sidebar-title">pep8 vs. pycodestyle</p>
+<p>The Python project <code class="docutils literal notranslate"><span class="pre">pep8</span></code> has been
+<a class="reference external" href="https://github.com/PyCQA/pycodestyle/issues/466">renamed</a> to
+<code class="docutils literal notranslate"><span class="pre">pycodestyle</span></code>. But there is no <code class="docutils literal notranslate"><span class="pre">pytest-pycodestyle</span></code> project yet.</p>
+<p><a class="reference external" href="https://bitbucket.org/pytest-dev/pytest-pep8/issues/15">https://bitbucket.org/pytest-dev/pytest-pep8/issues/15</a></p>
+</div>
+<p>With these plugins the linting operations are completely integrated within the
+test workflow. The results of the tests and linting operations are rendered
+in a consistent format.</p>
+<div class="section" id="pep8-only">
+<h3>pep8 only<a class="headerlink" href="#pep8-only" title="Permalink to this headline">¶</a></h3>
+<p>Run only the <code class="docutils literal notranslate"><span class="pre">pep8</span></code> linting.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">shell console</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> pytest --pep8 -m pep8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="pylint-only">
+<h3>pylint only<a class="headerlink" href="#pylint-only" title="Permalink to this headline">¶</a></h3>
+<p>Run only the <code class="docutils literal notranslate"><span class="pre">pylint</span></code> linting.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">shell console</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> pytest --pylint -m pylint
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="both-pep8-and-pylint">
+<h3>Both pep8 and pylint<a class="headerlink" href="#both-pep8-and-pylint" title="Permalink to this headline">¶</a></h3>
+<p>Run both linting tools but not the tests themselves.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">shell console</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> pytest --pep8 --pylint -m <span class="s1">&#39;pep8 or pylint&#39;</span>
+</pre></div>
+</div>
+</div>
+<p>Run all the tests including the linting tools.</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">shell console</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> pytest
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+
+<h1 class="logo">
+ <a href="../index.html">
+  Sinoroc KB
+ </a>
+</h1>
+<p class="blurb">
+ Bits of knowledge
+</p>
+
+
+
+<h3><a href="../contents.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Foreword</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="package_data.html">Python package data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging.html">Python packaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_version.html">Python project version single-sourcing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_name.html">Python project name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_imports.html">Python imports</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pytest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tox.html">tox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pex.html">pex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setuptools.html">setuptools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chameleon.html">Chameleon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="working.html">Working with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fizz_buzz.html">Fizz buzz</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/index.html">Appendix</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+      
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/python/pytest.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
