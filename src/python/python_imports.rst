@@ -6,11 +6,11 @@ Python imports
 **************
 
 
-1. Identify clearly what you want your top level modules and packages to be.
+#. Identify clearly what you want your top level modules and packages to be.
 
-2. Make all imports absolute.
+#. Make all imports absolute.
 
-3. Either:
+#. Either:
 
     * make your project a real installable project, so that those top level
       modules and packages are installed in the environment's ``site-packages``
@@ -19,7 +19,7 @@ Python imports
     * or make sure that the current working directory is the one containing the
       top level modules and packages.
 
-4. Make sure to call your code via the *executable module* method instead of
+#. Make sure to call your code via the *executable module* method instead of
    the *script* method:
 
     * ``path/to/pythonX.Y -m toplevelpackage.module`` DO
@@ -29,7 +29,7 @@ Python imports
     * ``path/to/pythonX.Y -m toplevelpackage.subpackage`` DO (assuming there is
       a ``toplevelpackage/subpackage/__main__.py`` file)
 
-5. Later on, once it all works well and everything is under control, you might
+#. Later on, once it all works well and everything is under control, you might
    decide to change some or all imports to relative. (If things are done right,
    I believe it could be possible to make it so that it is possible to call the
    executable modules from any level within the directory structure as the
