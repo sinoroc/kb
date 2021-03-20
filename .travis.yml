@@ -23,7 +23,7 @@ deploy:
   - provider: 'pages'
     skip_cleanup: true
     on:
-      branch: 'master'
+      branch: 'main'
     local_dir: 'build/html'
     github_token: '${GITHUB_TOKEN}'
 
