@@ -22,12 +22,17 @@ Python imports
 #. Make sure to call your code via the *executable module* method instead of
    the *script* method:
 
-    * ``path/to/pythonX.Y -m toplevelpackage.module`` DO
-    * ``path/to/pythonX.Y toplevelpackage/module.py`` DON'T
-    * ``path/to/pythonX.Y -m toplevelmodule`` DO
-    * ``path/to/pythonX.Y toplevelmodule.py`` DON'T
-    * ``path/to/pythonX.Y -m toplevelpackage.subpackage`` DO (assuming there is
-      a ``toplevelpackage/subpackage/__main__.py`` file)
+    * DO
+
+        * ``path/to/pythonX.Y -m toplevelpackage.module``
+        * ``path/to/pythonX.Y -m toplevelmodule``
+        * ``path/to/pythonX.Y -m toplevelpackage.subpackage``
+          (assuming there is a ``toplevelpackage/subpackage/__main__.py`` file)
+
+    * DON'T
+
+        * ``path/to/pythonX.Y toplevelpackage/module.py``
+        * ``path/to/pythonX.Y toplevelmodule.py``
 
 #. Later on, once it all works well and everything is under control, you might
    decide to change some or all imports to relative. (If things are done right,
