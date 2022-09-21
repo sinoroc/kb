@@ -6,16 +6,19 @@ language: 'python'
 os:
   - 'linux'
 
+dist: 'bionic'
+
 sudo: false
 
 python:
-  - '3.6'
+  - '3.10'
 
 addons:
   apt:
     packages:
       - 'graphviz'
       - 'latexmk'
+      - 'tex-gyre'
       - 'texlive-fonts-recommended'
       - 'texlive-latex-extra'
       - 'texlive-latex-recommended'
