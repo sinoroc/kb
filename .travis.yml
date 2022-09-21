@@ -3,6 +3,14 @@
 
 language: 'python'
 
+os:
+  - 'linux'
+
+sudo: false
+
+python:
+  - '3.6'
+
 addons:
   apt:
     packages:
