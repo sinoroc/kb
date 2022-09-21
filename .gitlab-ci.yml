@@ -2,12 +2,13 @@
 
 
 '.common':
-  image: 'python:3.6'
+  image: 'python:3.10'
   before_script:
     - 'apt-get --assume-yes --quiet update'
     - 'apt-get --assume-yes --quiet install --no-install-recommends
       graphviz
       latexmk
+      tex-gyre
       texlive-fonts-recommended
       texlive-latex-extra
       texlive-latex-recommended'
