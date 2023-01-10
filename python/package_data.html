@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Python package data &#8212; Sinoroc KB</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python packaging" href="packaging.html" />
+    <link rel="prev" title="Python" href="index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="python-package-data">
+<h1>Python package data<a class="headerlink" href="#python-package-data" title="Permalink to this heading">¶</a></h1>
+<p>Further down is a minimal example showing how to achieve both:</p>
+<ul class="simple">
+<li><p>packaging a data file <code class="docutils literal notranslate"><span class="pre">file.src</span></code> in <code class="docutils literal notranslate"><span class="pre">sdist</span></code> only;</p></li>
+<li><p>and packaging another data file <code class="docutils literal notranslate"><span class="pre">file.bin</span></code> in <code class="docutils literal notranslate"><span class="pre">bdist</span></code> only;</p></li>
+<li><p>additionally it shows how <code class="docutils literal notranslate"><span class="pre">file.all</span></code> is packaged in both distribution
+packages and <code class="docutils literal notranslate"><span class="pre">file.not</span></code> in none of them.</p></li>
+</ul>
+<aside class="sidebar">
+<p class="sidebar-title"><code class="docutils literal notranslate"><span class="pre">file.bin</span></code> and built files</p>
+<p>Files such as <code class="docutils literal notranslate"><span class="pre">file.bin</span></code> are not in the original source code of the
+project (i.e. not in the <cite>git</cite> source code repository for example) but
+should still be installed. Typically these files are created during a build
+step such as <code class="docutils literal notranslate"><span class="pre">./setup.py</span> <span class="pre">build</span></code> for example (think <code class="docutils literal notranslate"><span class="pre">gettext</span></code> <code class="docutils literal notranslate"><span class="pre">*.mo</span></code>
+messages catalogs).</p>
+</aside>
+<p>The gist of it is:</p>
+<ul class="simple">
+<li><p>first and foremost, always thoroughly clean up the working directory between
+two packaging attempts while tweaking these packaging options (in particular
+empty the <code class="docutils literal notranslate"><span class="pre">src/Thing.egg-info</span></code> directory containing the <code class="docutils literal notranslate"><span class="pre">SOURCES.txt</span></code>
+file as well as the <code class="docutils literal notranslate"><span class="pre">build</span></code>, and <code class="docutils literal notranslate"><span class="pre">dist</span></code> directories) or the results will
+be inconsistent;</p></li>
+<li><p>set the <code class="docutils literal notranslate"><span class="pre">include_package_data</span></code> option to <code class="docutils literal notranslate"><span class="pre">True</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">file.all</span></code> and files that belong in both <code class="docutils literal notranslate"><span class="pre">sdist</span></code> and <code class="docutils literal notranslate"><span class="pre">bdist</span></code> are
+specified in <code class="docutils literal notranslate"><span class="pre">MANIFEST.in</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">file.bin</span></code> and files that belong in <code class="docutils literal notranslate"><span class="pre">bdist</span></code> only are specified in
+<code class="docutils literal notranslate"><span class="pre">package_data</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">file.src</span></code> and files that belong in <code class="docutils literal notranslate"><span class="pre">sdist</span></code> only are specified in both
+<code class="docutils literal notranslate"><span class="pre">MANIFEST.in</span></code> and <code class="docutils literal notranslate"><span class="pre">exclude_package_data</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">file.not</span></code> and files that do not belong in any distribution package are not
+specified anywhere.</p></li>
+</ul>
+<p>The directory structure for our example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.
+├ MANIFEST.in
+├ setup.py
+└ src
+    └ thing
+        ├ __init__.py
+        └ data
+            ├ file.all
+            ├ file.bin
+            ├ file.not
+            └ file.src
+</pre></div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">MANIFEST.in</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>recursive-include src/thing *.all
+recursive-include src/thing *.src
+</pre></div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">import</span> <span class="nn">setuptools</span>
+
+<span class="n">setuptools</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span>
+<span class="hll">    <span class="n">exclude_package_data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;thing&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;data/*.src&#39;</span><span class="p">]},</span>
+</span><span class="hll">    <span class="n">include_package_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">package_data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;thing&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;data/*.bin&#39;</span><span class="p">]},</span>
+</span>    <span class="c1">#</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Thing&#39;</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="s1">&#39;1.0.0&#39;</span><span class="p">,</span>
+    <span class="c1">#</span>
+    <span class="n">package_dir</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;&#39;</span><span class="p">:</span> <span class="s1">&#39;src&#39;</span><span class="p">},</span>
+    <span class="n">packages</span><span class="o">=</span><span class="n">setuptools</span><span class="o">.</span><span class="n">find_packages</span><span class="p">(</span><span class="n">where</span><span class="o">=</span><span class="s1">&#39;src&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This has been tested with:</p>
+<ul class="simple">
+<li><p>Python 3.6.7</p></li>
+<li><p>setuptools 39.0.1</p></li>
+<li><p>wheel 0.33.1</p></li>
+</ul>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+
+<h1 class="logo">
+ <a href="../index.html">
+  Sinoroc KB
+ </a>
+</h1>
+<p class="blurb">
+ Bits of knowledge
+</p>
+
+
+
+<h3><a href="../contents.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Foreword</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Python package data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging.html">Python packaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_version.html">Python project version single-sourcing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_name.html">Python project name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_imports.html">Python imports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytest.html">pytest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tox.html">tox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pex.html">pex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setuptools.html">setuptools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chameleon.html">Chameleon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="working.html">Working with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fizz_buzz.html">Fizz buzz</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/index.html">Appendix</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+      
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 6.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/python/package_data.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

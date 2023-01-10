@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Python packaging &#8212; Sinoroc KB</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python project version single-sourcing" href="project_version.html" />
+    <link rel="prev" title="Python package data" href="package_data.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="python-packaging">
+<h1>Python packaging<a class="headerlink" href="#python-packaging" title="Permalink to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#introduction" id="id1">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#terminology" id="id2">Terminology</a></p>
+<ul>
+<li><p><a class="reference internal" href="#module" id="id3">Module</a></p></li>
+<li><p><a class="reference internal" href="#package" id="id4">Package</a></p></li>
+<li><p><a class="reference internal" href="#project" id="id5">Project</a></p></li>
+<li><p><a class="reference internal" href="#distribution" id="id6">Distribution</a></p>
+<ul>
+<li><p><a class="reference internal" href="#source-distribution" id="id7">Source distribution</a></p></li>
+<li><p><a class="reference internal" href="#binary-distribution" id="id8">Binary distribution</a></p></li>
+<li><p><a class="reference internal" href="#wheel" id="id9">Wheel</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#python-package-index" id="id10">Python package index</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#references" id="id11">References</a></p></li>
+</ul>
+</nav>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>About proper packaging of Python projects…</p>
+</section>
+<section id="terminology">
+<h2>Terminology<a class="headerlink" href="#terminology" title="Permalink to this heading">¶</a></h2>
+<section id="module">
+<h3>Module<a class="headerlink" href="#module" title="Permalink to this heading">¶</a></h3>
+<p>Commonly a Python file (<code class="docutils literal notranslate"><span class="pre">mymodule.py</span></code>). Multiple Python modules are usually
+gathered in a Python package.</p>
+</section>
+<section id="package">
+<h3>Package<a class="headerlink" href="#package" title="Permalink to this heading">¶</a></h3>
+<aside class="sidebar">
+<p class="sidebar-title">Confusion #1: <em>Import package</em> vs. <em>distribution package</em></p>
+<p>One of the biggest confusion in the Python packaging terminology is around
+the meaning of the term <em>package</em>. Sometimes the terms <em>import package</em> and
+<em>distribution package</em> are used to clarify this.</p>
+</aside>
+<p>It is sometimes named <em>import package</em>, as opposed to <em>distribution package</em>
+(see below).</p>
+<p>A Python package is a directory containing one or more Python modules.</p>
+<p>While it used to be mandatory, in more recent versions of Python a <em>package
+initializer</em> (the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> module) is not strictly necessary to make an
+importable package out of a directory.</p>
+<p>It is possible for a package to contain other sub-packages in a tree-like
+structure. The outermost package is then called the <em>top-level package</em>.</p>
+</section>
+<section id="project">
+<h3>Project<a class="headerlink" href="#project" title="Permalink to this heading">¶</a></h3>
+<p>A Python project is usually a collection of code (and sometimes also data) that
+is intended to be distributed as a single unit. Typically a Python project is a
+library, an application, a plugin, a framework, or a toolkit. In most cases
+this corresponds to a single source code repository (for example a <em>git</em>,
+<em>SVN</em>, or <em>CVS</em> repository).</p>
+<aside class="sidebar">
+<p class="sidebar-title">Multiple <em>top-level</em> packages and modules</p>
+<p>For example <em>setuptools</em> (version <code class="docutils literal notranslate"><span class="pre">46.1.2</span></code> as of this writing) has two
+<em>top-level packages</em> <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> and <code class="docutils literal notranslate"><span class="pre">pkg_resources</span></code>. It additionally
+seems to have one <em>top-level module</em> <code class="docutils literal notranslate"><span class="pre">easy_install</span></code>.</p>
+</aside>
+<p>It is not often the case, but a Python project can contain multiple top-level
+packages. So of course the name of a top-level package is not always the same
+as the name of the project itself. It would be otherwise impossible to have
+more than one top-level package per project.</p>
+<p>Some Python projects are only made of one or more Python modules directly at
+the root without tree-like package structure.</p>
+</section>
+<section id="distribution">
+<h3>Distribution<a class="headerlink" href="#distribution" title="Permalink to this heading">¶</a></h3>
+<aside class="sidebar">
+<p class="sidebar-title">Confusion #2: Python distribution vs. Python project distribution</p>
+<p><em>Project distributions</em> are not to be confused with <em>Python distributions</em>
+such as <em>CPython</em>, <em>Anaconda</em>, <em>SciPy</em>, etc.</p>
+</aside>
+<p>It is sometimes named <em>distribution package</em>, as opposed to <em>import package</em>
+(see above).</p>
+<p>A Python project distribution corresponds to a snapshot of a Python project
+that is distributed to other Python users. Each snapshot is labeled with a
+version string. Each snapshot (or project version) is made available in one or
+multiple formats. Users can then obtain their preferred format.</p>
+<p>There are two common types of distribution formats: <em>source</em> and <em>binary</em>.</p>
+<section id="source-distribution">
+<h4>Source distribution<a class="headerlink" href="#source-distribution" title="Permalink to this heading">¶</a></h4>
+<p>A source distribution, often abbreviated <em>sdist</em>, is a relatively raw type of
+distribution. It is not compiled, which is both an advantage and an
+inconvenient.</p>
+<p>The inconvenient is that a source distribution is not always immediately
+usable. That is why source distributions typically contain the setup script.
+For example if the project contains a <em>C</em> extension, then this code must be
+compiled before running.</p>
+<p>The advantage is that a source distribution is universal. It is not tied to a
+specific operating system, CPU architecture, etc. The source distribution is
+the <em>purest</em> form of distribution, it can be used to build all the binary
+distributions for all targets.</p>
+<p>Source distributions can be found in multiple formats:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python setup.py sdist --help-formats
+List of available source distribution formats:
+  --formats=bztar  bzip2&#39;ed tar-file
+  --formats=gztar  gzip&#39;ed tar-file
+  --formats=tar    uncompressed tar file
+  --formats=zip    ZIP file
+  --formats=ztar   compressed tar file
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>It is strongly recommended to always offer at least the <em>sdist</em> of a Python
+project (for example on PyPI). The reason is that it is always possible to
+use the <em>sdist</em> on any platform. On the other hand it is most likely
+impossible to use a <em>bdist</em> targetted for another platform.</p>
+<p>So if no <em>bdist</em> of the project is available for the target platform, the
+<em>sdist</em> can still be used and eventually a target specific <em>bdist</em> can be
+built locally.</p>
+</div>
+</section>
+<section id="binary-distribution">
+<h4>Binary distribution<a class="headerlink" href="#binary-distribution" title="Permalink to this heading">¶</a></h4>
+<p>A binary distribution, often abbreviated <em>bdist</em>, is a more advanced type of
+distribution.</p>
+<p>There are multiple types of binary distributions, for example <em>egg</em>
+(<code class="docutils literal notranslate"><span class="pre">bdist_egg</span></code>) and <em>wheel</em> (<code class="docutils literal notranslate"><span class="pre">bdist_wheel</span></code>).</p>
+</section>
+<section id="wheel">
+<h4>Wheel<a class="headerlink" href="#wheel" title="Permalink to this heading">¶</a></h4>
+<p><em>wheel</em> is the preferred format of distribution. It offers the best user
+experience, as it is the format that is the closest to the specifics of the
+target system.</p>
+</section>
+</section>
+<section id="python-package-index">
+<h3>Python package index<a class="headerlink" href="#python-package-index" title="Permalink to this heading">¶</a></h3>
+<aside class="sidebar">
+<p class="sidebar-title">Confusion #3: About the PyPI name</p>
+<p>The name Python <em>package</em> index is confusing since PyPI does not directly
+contains <em>packages</em>, but <em>distributions</em> of Python projects.</p>
+</aside>
+<p>The <em>Python package index</em>, commonly called <em>PyPI</em> is the main repository of
+Python project distributions. It can be found at following URL:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pypi.org/">https://pypi.org/</a></p></li>
+</ul>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<p>David Beazley “Modules and Packages:Live and Let Die!”:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.dabeaz.com/modulepackage/ModulePackage.pdf">http://www.dabeaz.com/modulepackage/ModulePackage.pdf</a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+
+<h1 class="logo">
+ <a href="../index.html">
+  Sinoroc KB
+ </a>
+</h1>
+<p class="blurb">
+ Bits of knowledge
+</p>
+
+
+
+<h3><a href="../contents.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Foreword</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="package_data.html">Python package data</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Python packaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_version.html">Python project version single-sourcing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_name.html">Python project name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_imports.html">Python imports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytest.html">pytest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tox.html">tox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pex.html">pex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setuptools.html">setuptools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chameleon.html">Chameleon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="working.html">Working with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fizz_buzz.html">Fizz buzz</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/index.html">Appendix</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+      
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 6.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/python/packaging.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>setuptools &#8212; Sinoroc KB</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chameleon" href="chameleon.html" />
+    <link rel="prev" title="pex" href="pex.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="setuptools">
+<h1>setuptools<a class="headerlink" href="#setuptools" title="Permalink to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#tests" id="id1">Tests</a></p></li>
+<li><p><a class="reference internal" href="#commands-dependencies" id="id2">Commands dependencies</a></p></li>
+<li><p><a class="reference internal" href="#extend-install-command" id="id3">Extend install command</a></p></li>
+</ul>
+</nav>
+<section id="tests">
+<h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading">¶</a></h2>
+<p>Place the tests in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory. Per default <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> adds the
+<code class="docutils literal notranslate"><span class="pre">test</span></code> directory to the source distribution <code class="docutils literal notranslate"><span class="pre">sdist</span></code>. This can be disabled
+in the <code class="docutils literal notranslate"><span class="pre">MANIFEST.in</span></code>.</p>
+</section>
+<section id="commands-dependencies">
+<h2>Commands dependencies<a class="headerlink" href="#commands-dependencies" title="Permalink to this heading">¶</a></h2>
+<p>Graph showing the dependencies between the common <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> commands:</p>
+<div class="graphviz"><img src="../_images/graphviz-50bfa51c0dc7c00e1d0b11f9cca07e42e1bcf041.png" alt="//
+
+
+digraph setuptools {
+    node [fontsize=10]
+    edge [fontsize=8]
+    &quot;install&quot; -&gt; &quot;bdist_egg&quot; [label=&quot;install&quot;]
+    &quot;install&quot; -&gt; &quot;install_lib&quot; [label=&quot;bdist,bdist_dumb,bdist_wheel&quot;]
+    &quot;build&quot; -&gt; &quot;build_py&quot;
+    &quot;build_py&quot; -&gt; &quot;egg_info&quot;
+    &quot;bdist_egg&quot; -&gt; &quot;egg_info&quot;
+    &quot;bdist_egg&quot; -&gt; &quot;install_lib&quot;
+    &quot;install_egg_info&quot; -&gt; &quot;egg_info&quot;
+    &quot;install_lib&quot; -&gt; &quot;build_py&quot; [label=&quot;bdist_egg,install,install_lib&quot;]
+    &quot;install_lib&quot; -&gt; &quot;install_egg_info&quot; [label=&quot;bdist,bdist_dumb,bdist_wheel&quot;]
+    &quot;install_egg_info&quot; -&gt; &quot;install_scripts&quot;
+    &quot;bdist_dumb&quot; -&gt; &quot;build&quot;
+    &quot;bdist_dumb&quot; -&gt; &quot;install&quot;
+    &quot;bdist_wheel&quot; -&gt; &quot;build&quot;
+    &quot;bdist_wheel&quot; -&gt; &quot;install&quot;
+    &quot;bdist&quot; -&gt; &quot;bdist_dumb&quot;
+    &quot;sdist&quot; -&gt; &quot;egg_info&quot;
+    &quot;sdist&quot; -&gt; &quot;check&quot;
+    &quot;develop&quot; -&gt; &quot;build_ext&quot;
+    &quot;develop&quot; -&gt; &quot;egg_info&quot;
+    &quot;test&quot; -&gt; &quot;egg_info&quot;
+    &quot;test&quot; -&gt; &quot;build_ext&quot;
+}
+
+
+// EOF" class="graphviz" /></div>
+</section>
+<section id="extend-install-command">
+<h2>Extend install command<a class="headerlink" href="#extend-install-command" title="Permalink to this heading">¶</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is a work in progress that needs to be improved on.</p>
+</div>
+<p>This shows how to add a subcommand to the <code class="docutils literal notranslate"><span class="pre">install</span></code> command. This also shows
+how the subcommand can add to the list of files to be installed (packaged in a
+<code class="docutils literal notranslate"><span class="pre">bdist</span></code>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">install_something</span><span class="p">(</span><span class="n">setuptools</span><span class="o">.</span><span class="n">Command</span><span class="p">):</span>
+    <span class="n">user_options</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;install-dir=&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s2">&quot;directory to install to&quot;</span><span class="p">),</span>
+    <span class="p">]</span>
+    <span class="k">def</span> <span class="nf">initialize_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">install_dir</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">def</span> <span class="nf">finalize_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_undefined_options</span><span class="p">(</span>
+            <span class="s1">&#39;install&#39;</span><span class="p">,</span>
+            <span class="p">(</span><span class="s1">&#39;install_lib&#39;</span><span class="p">,</span> <span class="s1">&#39;install_dir&#39;</span><span class="p">),</span>
+        <span class="p">)</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;package/something.bin&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mkpath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">install_dir</span> <span class="o">+</span> <span class="s1">&#39;package&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">copy_file</span><span class="p">(</span>
+            <span class="s1">&#39;src/package/something.bin&#39;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">install_dir</span> <span class="o">+</span> <span class="s1">&#39;package/something.bin&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_outputs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span>
+
+
+<span class="k">class</span> <span class="nc">install</span><span class="p">(</span><span class="n">distutils</span><span class="o">.</span><span class="n">command</span><span class="o">.</span><span class="n">install</span><span class="o">.</span><span class="n">install</span><span class="p">):</span>
+    <span class="n">_sub_command</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s1">&#39;install_something&#39;</span><span class="p">,</span>
+        <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">_sub_commands</span> <span class="o">=</span> <span class="n">distutils</span><span class="o">.</span><span class="n">command</span><span class="o">.</span><span class="n">install</span><span class="o">.</span><span class="n">install</span><span class="o">.</span><span class="n">sub_commands</span>
+    <span class="n">sub_commands</span> <span class="o">=</span> <span class="p">[</span><span class="n">_sub_command</span><span class="p">]</span> <span class="o">+</span> <span class="n">_sub_commands</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+
+<h1 class="logo">
+ <a href="../index.html">
+  Sinoroc KB
+ </a>
+</h1>
+<p class="blurb">
+ Bits of knowledge
+</p>
+
+
+
+<h3><a href="../contents.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Foreword</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="package_data.html">Python package data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging.html">Python packaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_version.html">Python project version single-sourcing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_name.html">Python project name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_imports.html">Python imports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytest.html">pytest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tox.html">tox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pex.html">pex</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">setuptools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chameleon.html">Chameleon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="working.html">Working with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fizz_buzz.html">Fizz buzz</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/index.html">Appendix</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+      
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 6.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/python/setuptools.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

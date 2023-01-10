@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Shell &#8212; Sinoroc KB</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Appendix" href="../appendix/index.html" />
+    <link rel="prev" title="npm" href="npm.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="shell">
+<h1>Shell<a class="headerlink" href="#shell" title="Permalink to this heading">¶</a></h1>
+<p>Create a temporary directory and change to it:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span><span class="o">(</span><span class="nv">$mktemp</span><span class="w"> </span>--directory<span class="o">)</span>
+<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span><span class="o">(</span><span class="nv">$mktemp</span><span class="w"> </span>-d<span class="o">)</span>
+</pre></div>
+</div>
+<p>List directories by disk usage:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>du<span class="w"> </span>--human-readable<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>--human-numeric-sort<span class="w"> </span>--reverse<span class="w"> </span><span class="p">|</span><span class="w"> </span>less
+<span class="gp">$ </span>du<span class="w"> </span>-h<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-hr<span class="w"> </span><span class="p">|</span><span class="w"> </span>less
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>du<span class="w"> </span>--all<span class="w"> </span>--human-readable<span class="w"> </span>--max-depth<span class="o">=</span><span class="m">1</span><span class="w"> </span>/<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>--human-numeric-sort<span class="w"> </span>--reverse
+<span class="gp">$ </span>sudo<span class="w"> </span>du<span class="w"> </span>-a<span class="w"> </span>-d<span class="w"> </span><span class="m">1</span><span class="w"> </span>-h<span class="w"> </span>/<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-hr
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+
+<h1 class="logo">
+ <a href="../index.html">
+  Sinoroc KB
+ </a>
+</h1>
+<p class="blurb">
+ Bits of knowledge
+</p>
+
+
+
+<h3><a href="../contents.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Foreword</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Miscellaneous</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="html5.html">HTML5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="makefile.html">Makefile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="npm.html">npm</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Shell</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/index.html">Appendix</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+      
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 6.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/misc/shell.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

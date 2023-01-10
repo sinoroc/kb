@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Python project name &#8212; Sinoroc KB</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python imports" href="python_imports.html" />
+    <link rel="prev" title="Python project version single-sourcing" href="project_version.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="python-project-name">
+<h1>Python project name<a class="headerlink" href="#python-project-name" title="Permalink to this heading">¶</a></h1>
+<section id="problem">
+<h2>Problem<a class="headerlink" href="#problem" title="Permalink to this heading">¶</a></h2>
+<p>How to get the name of the project containing the current module (or package)?</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://stackoverflow.com/a/60363617">https://stackoverflow.com/a/60363617</a></p></li>
+<li><p><a class="reference external" href="https://stackoverflow.com/a/60351412">https://stackoverflow.com/a/60351412</a></p></li>
+<li><p><a class="reference external" href="https://stackoverflow.com/a/60975978">https://stackoverflow.com/a/60975978</a></p></li>
+<li><p><a class="reference external" href="https://stackoverflow.com/a/63849982">https://stackoverflow.com/a/63849982</a></p></li>
+</ul>
+</section>
+<section id="solution">
+<h2>Solution<a class="headerlink" href="#solution" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">import</span> <span class="nn">importlib.util</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+
+<span class="kn">import</span> <span class="nn">importlib_metadata</span>
+
+<span class="k">def</span> <span class="nf">get_distribution</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">distribution</span> <span class="ow">in</span> <span class="n">importlib_metadata</span><span class="o">.</span><span class="n">distributions</span><span class="p">():</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">relative</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">distribution</span><span class="o">.</span><span class="n">locate_file</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">))</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">relative</span> <span class="ow">in</span> <span class="n">distribution</span><span class="o">.</span><span class="n">files</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">distribution</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="k">def</span> <span class="nf">_alpha</span><span class="p">():</span>
+    <span class="n">file_name</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_spec</span><span class="p">(</span><span class="s1">&#39;alpha&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">origin</span>
+    <span class="n">distribution</span> <span class="o">=</span> <span class="n">get_distribution</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;alpha&quot;</span><span class="p">,</span> <span class="n">distribution</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">_bravo</span><span class="p">():</span>
+    <span class="kn">import</span> <span class="nn">bravo</span>
+    <span class="n">file_name</span> <span class="o">=</span> <span class="n">bravo</span><span class="o">.</span><span class="vm">__file__</span>
+    <span class="n">distribution</span> <span class="o">=</span> <span class="n">get_distribution</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bravo&quot;</span><span class="p">,</span> <span class="n">distribution</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">])</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">_alpha</span><span class="p">()</span>
+    <span class="n">_bravo</span><span class="p">()</span>
+</pre></div>
+</div>
+<section id="update-february-2021">
+<h3>Update February 2021<a class="headerlink" href="#update-february-2021" title="Permalink to this heading">¶</a></h3>
+<p>Looks like this could be solved in a simpler way
+thanks to the newly added <cite>packages_distributions()</cite> function in <cite>importlib_metadata</cite>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://importlib-metadata.readthedocs.io/en/stable/using.html#package-distributions">https://importlib-metadata.readthedocs.io/en/stable/using.html#package-distributions</a></p></li>
+<li><p><a class="reference external" href="https://github.com/python/importlib_metadata/pull/287/files">https://github.com/python/importlib_metadata/pull/287/files</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+
+<h1 class="logo">
+ <a href="../index.html">
+  Sinoroc KB
+ </a>
+</h1>
+<p class="blurb">
+ Bits of knowledge
+</p>
+
+
+
+<h3><a href="../contents.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Foreword</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="package_data.html">Python package data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging.html">Python packaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_version.html">Python project version single-sourcing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Python project name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_imports.html">Python imports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytest.html">pytest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tox.html">tox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pex.html">pex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setuptools.html">setuptools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chameleon.html">Chameleon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="working.html">Working with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fizz_buzz.html">Fizz buzz</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/index.html">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/index.html">Appendix</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      
+      
+      
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 6.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/python/project_name.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
