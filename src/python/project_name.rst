@@ -59,4 +59,14 @@ Solution
         _bravo()
 
 
+Update February 2021
+--------------------
+
+Looks like this could be solved in a simpler way
+thanks to the newly added `packages_distributions()` function in `importlib_metadata`:
+
+* https://importlib-metadata.readthedocs.io/en/stable/using.html#package-distributions
+* https://github.com/python/importlib_metadata/pull/287/files
+
+
 .. EOF
