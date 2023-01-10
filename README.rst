@@ -32,9 +32,17 @@ Repositories
 Style guide
 -----------
 
-Refer to the
-`Python documentation style guide <https://docs.python.org/devguide/documenting.html#style-guide>`_,
-in particular regarding section headers.
+Use the following for section headings:
+
+* ``#`` with overline, for parts
+* ``*`` with overline, for chapters
+* ``=``, for sections
+* ``-``, for subsections
+* ``^``, for subsubsections
+* ``"``, for paragraphs
+
+Suggestion taken from
+`Python Developer's Guide <https://devguide.python.org/documentation/markup/#sections>`_.
 
 
 .. EOF
