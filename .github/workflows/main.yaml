@@ -34,6 +34,7 @@ jobs:
       - name: "Build"
         run: 'tox run -e build'
       - name: "Upload artifact for Pages"
+        if: "github.ref_name == 'main'"
         uses: 'actions/upload-pages-artifact@v1'
         with:
           path: 'build/html'
