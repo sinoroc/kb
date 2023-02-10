@@ -54,7 +54,7 @@ Development workflow tools
     Flit,yes,yes,yes,no,no,no,no
     Hatch,yes,yes,yes,yes,no,yes,no
     PDM,yes,yes,yes,yes,yes,yes,yes
-    Poetry,yes,yes,yes,no,yes,yes,yes
+    Poetry,yes,yes,yes,yes,no,yes,yes
     Pyflow,no,yes,yes,yes,no,no,yes
     
 See also build back-end features in dedicated section.
