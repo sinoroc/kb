@@ -18,6 +18,7 @@ Python
     pytest
     tox
     pex
+    task_runners
     setuptools
     chameleon
     working
