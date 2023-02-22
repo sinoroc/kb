@@ -167,7 +167,7 @@ Python project distributions. It can be found at following URL:
 References
 ==========
 
-David Beazley "Modules and Packages:Live and Let Die!":
+David Beazley "*Modules and Packages: Live and Let Die!*":
 
 *  http://www.dabeaz.com/modulepackage/ModulePackage.pdf
 
