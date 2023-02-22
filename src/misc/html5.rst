@@ -11,7 +11,7 @@ Sectioning
 .. code-block:: html
 
     <!DOCTYPE html>
-    <html>
+    <html lang="en">
      <head>
       <title>Title</title>
      </head>
