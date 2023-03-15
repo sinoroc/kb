@@ -172,10 +172,15 @@ Manage virtual environments
     venv,no,no
     virtualenv,yes,no
     virtualenvwrapper,yes,no
- 
-Unlike all the other tools here,
+
+Unlike the other tools presented in this section,
 ``venv`` is part of Python's own standard library,
-it is always available without having to be installed separately.
+it should be always available without having to be installed separately.
+But note that some Linux distributions (e.g. Debian, Ubuntu, and derivatives)
+made the decision to package ``venv`` separately from the rest of the Python distribution
+and consequently it might be necessary to install ``venv`` explicitly
+(typically with a command such as ``apt install python3-venv``,
+consult the documentation of the Linux distribution for exact details).
 
 .. [#] ``[tool.hatch.envs]`` section of ``pyproject.toml``
 .. [#] ``noxfile.py``
