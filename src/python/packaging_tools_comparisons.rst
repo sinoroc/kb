@@ -56,7 +56,7 @@ Development workflow tools
     PDM,yes,yes,yes,yes,yes,yes,yes
     Poetry,yes,yes,yes,yes,no,yes,yes
     Pyflow,no,yes,yes,yes,no,no,yes
-    
+
 See also build back-end features in dedicated section.
 
 There is no standard for lock files.
@@ -118,15 +118,18 @@ Build back-ends
     :header-rows: 1
     :stub-columns: 1
 
-    ,``[build-system]`` (PEP-517),``[project]`` (PEP-621),editable (PEP-660),C extensions
-    ``enscons``,yes,yes,yes,yes
+    ,``[build-system]`` (PEP-517),``[project]`` (PEP-621),Editable installation (PEP-660),Extensions configuration
+    ``enscons``,yes,yes,yes,*SCONS*
     ``flit-core``,yes,yes,yes,no
-    ``hatchling``,yes,yes,yes,no
+    ``hatchling``,yes,yes,yes,via plug-ins
+    ``maturin``,yes,yes,yes,*Cargo* (*Rust*)
+    ``meson-python``,yes,yes,yes,*Meson*
     ``pdm-backend``,yes,yes,yes,no
-    ``poetry-core``,yes,no,yes,[#]_
-    ``pymsbuild``,yes,no,no,yes
+    ``poetry-core``,yes,no,yes,``build.py`` [#]_
+    ``pymsbuild``,yes,no,no,``_msbuild.py``
     ``trampolim``,yes,yes,no,no
-    ``setuptools``,yes,yes,yes,yes
+    ``scikit-build-core``,yes,yes,no,*CMake*
+    ``setuptools``,yes,yes,yes,``setup.py``
     ``whey``,yes,yes,yes,no
 
 .. [#]  Poetry has an undocumented feature allowing
