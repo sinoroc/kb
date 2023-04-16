@@ -10,6 +10,8 @@ Python task runners
     :local:
 
 
+* https://pypi.org/project/chuy/
+
 * https://pypi.org/project/doit/
 
 * https://pypi.org/project/invoke/
