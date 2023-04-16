@@ -39,8 +39,9 @@ It is sometimes named *import package*, as opposed to *distribution package*
 (see below).
 
 A Python package is a directory containing
-at least one Python module ``__init__.py`` (called the package initializer)
+at least one Python module ``__init__.py`` (the package initializer)
 and zero or more additional Python modules.
+The package initializer can be completely empty, but it has to be there.
 
 It is possible for a package to contain other sub-packages in a tree-like
 structure. The outermost package is then called the *top-level package*.
