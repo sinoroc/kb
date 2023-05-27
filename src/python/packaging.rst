@@ -107,15 +107,7 @@ specific operating system, CPU architecture, etc. The source distribution is
 the *purest* form of distribution, it can be used to build all the binary
 distributions for all targets.
 
-Source distributions can be found in multiple formats::
-
-    $ python setup.py sdist --help-formats
-    List of available source distribution formats:
-      --formats=bztar  bzip2'ed tar-file
-      --formats=gztar  gzip'ed tar-file
-      --formats=tar    uncompressed tar file
-      --formats=zip    ZIP file
-      --formats=ztar   compressed tar file
+Source distributions are *gzip*'ed *tar* files with the ``.tar.gz.`` extension.
 
 
 .. attention::
