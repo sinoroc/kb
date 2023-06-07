@@ -50,7 +50,7 @@ Development workflow tools
     :header-rows: 1
     :stub-columns: 1
 
-    ,``[build-system]`` (PEP-517),Build,Upload,Env,Interchangeable build back-end,Plugins,Lock file
+    ,``[build-system]`` (PEP-517),Build,Upload,Manage virtual environments,Interchangeable build back-end,Plugins,Lock file
     Flit,yes,yes,yes,no,no,no,no
     Hatch,yes,yes,yes,yes,no,yes,no
     PDM,yes,yes,yes,yes,yes,yes,yes
