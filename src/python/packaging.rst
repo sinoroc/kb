@@ -87,7 +87,7 @@ that is distributed to other Python users. Each snapshot is labeled with a
 version string. Each snapshot (or project version) is made available in one or
 multiple formats. Users can then obtain their preferred format.
 
-There are two common types of distribution formats: *source* and *binary*.
+There are two common types of distribution formats: *source* and *built*.
 
 
 Source distribution
@@ -103,9 +103,10 @@ For example if the project contains a *C* extension, then this code must be
 compiled before running.
 
 The advantage is that a source distribution is universal. It is not tied to a
-specific operating system, CPU architecture, etc. The source distribution is
-the *purest* form of distribution, it can be used to build all the binary
-distributions for all targets.
+specific operating system, CPU architecture, etc.
+The source distribution
+can be used to build all the built distributions
+for all targets.
 
 Source distributions are *gzip*'ed *tar* files with the ``.tar.gz.`` extension.
 
@@ -122,22 +123,35 @@ Source distributions are *gzip*'ed *tar* files with the ``.tar.gz.`` extension.
     built locally.
 
 
-Binary distribution
-^^^^^^^^^^^^^^^^^^^
+Built distribution
+^^^^^^^^^^^^^^^^^^
 
-A binary distribution, often abbreviated *bdist*, is a more advanced type of
-distribution.
+A built distribution, often abbreviated *bdist*,
+is a more advanced type of distribution.
+This distribution format is designed
+so that the installation step is as straightforward as possible.
+In short: files only need to be extracted from the built distribution archive
+and copied to the right locations on disk.
+It does not require any kind of build step,
+as all files in a built distribution are already built
+for the specific target environment.
 
-There are multiple types of binary distributions, for example *egg*
-(``bdist_egg``) and *wheel* (``bdist_wheel``).
+Nowadays the only kind of built distributions
+one should know about
+is the *wheel*.
+The *egg*
+is another kind of built distribution
+that is now rarely used.
 
 
 Wheel
 ^^^^^
 
-*wheel* is the preferred format of distribution. It offers the best user
-experience, as it is the format that is the closest to the specifics of the
-target system.
+The built distribution format called *wheel*
+is the current preferred format of distribution for a project.
+It is defined by a `standard specification`__.
+
+__ https://packaging.python.org/en/latest/specifications/binary-distribution-format/
 
 
 Python package index
