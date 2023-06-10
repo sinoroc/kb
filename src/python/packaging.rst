@@ -71,42 +71,47 @@ Some Python projects are only made of one or more Python modules directly at
 the root without tree-like package structure.
 
 
-Distribution
-------------
+Distribution package
+--------------------
 
-.. sidebar:: Confusion #2: Python distribution vs. Python project distribution
+.. sidebar:: Confusion #2: *Distribution package* of a Python project
+    vs. *Python distribution*
 
-    *Project distributions* are not to be confused with *Python distributions*
-    such as *CPython*, *Anaconda*, *SciPy*, etc.
+    The term *Python distribution* is used to describe a specific
+    implementation or build of a Python interpreter.
+    *CPython* is probably the most famous one,
+    but there are plenty of others such as *ActiveState Python* and *Anaconda*.
+    Further examples: https://wiki.python.org/moin/PythonDistributions
 
-It is sometimes named *distribution package*, as opposed to *import package*
-(see above).
+Not to be confused with *import package* (see above)
+or *Python distribution* (see aside).
 
-A Python project distribution corresponds to a snapshot of a Python project
-that is distributed to other Python users. Each snapshot is labeled with a
-version string. Each snapshot (or project version) is made available in one or
-multiple formats. Users can then obtain their preferred format.
+A distribution package contains a specific release of a project.
+A release being a snapshot of the Python project at a certain point in time.
+A distribution package is always labelled with
+the name of the project
+and the version string for the snapshot.
 
-There are two common types of distribution formats: *source* and *built*.
+There are two common types of distribution formats:
+*source distribution* and *built distribution*.
 
 
 Source distribution
 ^^^^^^^^^^^^^^^^^^^
 
-A source distribution, often abbreviated *sdist*, is a relatively raw type of
-distribution. It is not compiled, which is both an advantage and an
-inconvenient.
+A source distribution, sometimes abbreviated as *sdist*,
+is a distribution format.
 
-The inconvenient is that a source distribution is not always immediately
-usable. That is why source distributions typically contain the setup script.
-For example if the project contains a *C* extension, then this code must be
-compiled before running.
-
-The advantage is that a source distribution is universal. It is not tied to a
-specific operating system, CPU architecture, etc.
-The source distribution
-can be used to build all the built distributions
-for all targets.
+A source distribution is meant to be installable on all Python interpreters
+and platforms that the project supports.
+It is not tied to a specific
+Python interpreter implementation,
+Python interpreter version,
+operating system,
+CPU architecture,
+CPU bitness.
+A source distribution can be used to build
+all the built distributions for all targets the project supports.
 
 Source distributions are *gzip*'ed *tar* files with the ``.tar.gz.`` extension.
 
@@ -126,30 +131,30 @@ Source distributions are *gzip*'ed *tar* files with the ``.tar.gz.`` extension.
 Built distribution
 ^^^^^^^^^^^^^^^^^^
 
-A built distribution, often abbreviated *bdist*,
-is a more advanced type of distribution.
-This distribution format is designed
+A built distribution, sometimes abbreviated as *bdist*,
+is a distribution format.
+It is designed
 so that the installation step is as straightforward as possible.
 In short: files only need to be extracted from the built distribution archive
 and copied to the right locations on disk.
 It does not require any kind of build step,
 as all files in a built distribution are already built
 for the specific target environment.
+Build distributions can be platform-specific.
 
 Nowadays the only kind of built distributions
-one should know about
-is the *wheel*.
-The *egg*
-is another kind of built distribution
-that is now rarely used.
+one should know about is the *wheel*.
+The *egg* is an older kind of built distribution
+that should not be used anymore (use *wheel* instead).
 
 
 Wheel
-^^^^^
+"""""
 
-The built distribution format called *wheel*
-is the current preferred format of distribution for a project.
+*Wheel* is a *built distribution* format.
+It is the preferred format of *distribution package*.
 It is defined by a `standard specification`__.
+A *wheel* is a file with the ``.whl`` extension.
 
 __ https://packaging.python.org/en/latest/specifications/binary-distribution-format/
 
@@ -157,14 +162,11 @@ __ https://packaging.python.org/en/latest/specifications/binary-distribution-for
 Python package index
 --------------------
 
-.. sidebar:: Confusion #3: About the PyPI name
+The *Python package index*, commonly called *PyPI*,
+is the main repository of
+Python project distributions packages.
 
-    The name Python *package* index is confusing since PyPI does not directly
-    contains *packages*, but *distributions* of Python projects.
-
-
-The *Python package index*, commonly called *PyPI* is the main repository of
-Python project distributions. It can be found at following URL:
+It can be found at following URL:
 
 * https://pypi.org/
 
@@ -172,9 +174,13 @@ Python project distributions. It can be found at following URL:
 References
 ==========
 
-David Beazley "*Modules and Packages: Live and Let Die!*":
+* David Beazley "*Modules and Packages: Live and Let Die!*"
 
-*  http://www.dabeaz.com/modulepackage/ModulePackage.pdf
+    * http://www.dabeaz.com/modulepackage/ModulePackage.pdf
+
+* Glossary — Python Packaging User Guide
+
+    * https://packaging.python.org/en/latest/glossary/
 
 
 .. EOF
