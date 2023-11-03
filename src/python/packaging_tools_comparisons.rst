@@ -127,9 +127,9 @@ Build back-ends
     ``pdm-backend``,yes,yes,yes,no
     ``poetry-core``,yes,no,yes,``build.py`` [#]_
     ``pymsbuild``,yes,no,no,``_msbuild.py``
-    ``trampolim``,yes,yes,no,no
     ``scikit-build-core``,yes,yes,no,*CMake*
     ``setuptools``,yes,yes,yes,``setup.py``
+    ``trampolim``,yes,yes,no,no
     ``whey``,yes,yes,yes,no
 
 .. [#]  Poetry has an undocumented feature allowing
