@@ -52,7 +52,7 @@ Development workflow tools
 
     ,``[build-system]`` (PEP-517),Build,Upload,Manage virtual environments,Interchangeable build back-end,Plugins,Lock file
     Flit,yes,yes,yes,no,no,no,no
-    Hatch,yes,yes,yes,yes,no,yes,no
+    Hatch,yes,yes,yes,yes,yes,yes,no
     PDM,yes,yes,yes,yes,yes,yes,yes
     Poetry,yes,yes,yes,yes,no,yes,yes
     Pyflow,no,yes,yes,yes,no,no,yes
