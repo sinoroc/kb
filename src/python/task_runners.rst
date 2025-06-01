@@ -14,6 +14,8 @@ Python task runners
 
 * https://pypi.org/project/doit/
 
+* https://pypi.org/project/duty/
+
 * https://pypi.org/project/invoke/
 
 * https://pypi.org/project/poethepoet/
