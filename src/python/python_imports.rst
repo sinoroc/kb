@@ -45,7 +45,7 @@ Python imports
 * Old reference, possibly outdated, but assuming I interpreted it right, it
   says that running *scripts* that live in a package is an anti pattern, and
   one should use ``python -m package.module`` instead:
-  
+
     * https://mail.python.org/pipermail/python-3000/2007-April/006793.html
     * https://www.python.org/dev/peps/pep-3122/
 

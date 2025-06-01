@@ -1,7 +1,14 @@
 ---
 
 
-'.common':
+'pre-commit':
+  image: 'python:3.10'
+  before_script:
+    - 'python -m pip install pre-commit'
+  script:
+    - 'pre-commit run --all-files --show-diff-on-failure'
+
+'.build':
   image: 'python:3.10'
   before_script:
     - 'apt-get --assume-yes --quiet update'
@@ -18,10 +25,10 @@
     - 'cp -r build/html public'
 
 'build':
-  extends: '.common'
+  extends: '.build'
 
 pages:
-  extends: '.common'
+  extends: '.build'
   artifacts:
     paths:
       - 'public'

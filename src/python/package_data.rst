@@ -71,9 +71,9 @@ In ``setup.py``:
     :emphasize-lines: 6-8
 
     #!/usr/bin/env python3
-    
+
     import setuptools
-    
+
     setuptools.setup(
         exclude_package_data={'thing': ['data/*.src']},
         include_package_data=True,

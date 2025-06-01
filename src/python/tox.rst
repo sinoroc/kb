@@ -29,7 +29,7 @@ Defaults
 
 .. code-block:: ini
     :caption: tox.ini
-    
+
     [tox]
     envlist =
         py37

@@ -4,11 +4,11 @@
 
 AUTHOR = 'sinoroc'
 MASTER_DOCUMENT = 'contents'
-SUBTITLE = "Bits of knowledge"
-TITLE = "Sinoroc KB"
+SUBTITLE = 'Bits of knowledge'
+TITLE = 'Sinoroc KB'
 
 
-# 
+#
 # General
 #
 
