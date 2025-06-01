@@ -1,0 +1,21 @@
+---
+
+
+extends: default
+
+rules:
+
+  document-end: enable
+
+  empty-values: enable
+
+  indentation:
+    spaces: 2
+
+  quoted-strings:
+    check-keys: true
+    quote-type: single
+    required: only-when-needed
+
+
+...  # EOF

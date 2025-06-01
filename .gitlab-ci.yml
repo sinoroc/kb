@@ -1,39 +1,40 @@
 ---
 
 
-'pre-commit':
-  image: 'python:3.10'
+pre-commit:
+  image: python:3.10
   before_script:
-    - 'python -m pip install pre-commit'
+    - python -m pip install pre-commit
   script:
-    - 'pre-commit run --all-files --show-diff-on-failure'
+    - pre-commit run --all-files --show-diff-on-failure
 
-'.build':
-  image: 'python:3.10'
+.build:
+  image: python:3.10
   before_script:
-    - 'apt-get --assume-yes --quiet update'
-    - 'apt-get --assume-yes --quiet install --no-install-recommends
+    - apt-get --assume-yes --quiet update
+    - >
+      apt-get --assume-yes --quiet install --no-install-recommends
       graphviz
       latexmk
       tex-gyre
       texlive-fonts-recommended
       texlive-latex-extra
-      texlive-latex-recommended'
-    - 'pip install tox'
+      texlive-latex-recommended
+    - pip install tox
   script:
-    - 'tox -e build'
-    - 'cp -r build/html public'
+    - tox -e build
+    - cp -r build/html public
 
-'build':
-  extends: '.build'
+build:
+  extends: .build
 
 pages:
-  extends: '.build'
+  extends: .build
   artifacts:
     paths:
-      - 'public'
+      - public
   only:
-    - 'main'
+    - main
 
 
 ...  # EOF

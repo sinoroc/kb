@@ -1,95 +1,103 @@
 ---
 
 
-name: 'main-workflow'
-run-name: "Main workflow"
+name: main-workflow
+run-name: Main workflow
 
-on:
-  push:
-  workflow_dispatch:
+'on':
+  push: {}
+  workflow_dispatch: {}
 
 concurrency:
-  group: 'pages'
+  group: pages
   cancel-in-progress: true
 
 jobs:
 
-  'pre-commit':
+  pre-commit:
 
-    runs-on: 'ubuntu-24.04'
+    runs-on: ubuntu-24.04
 
     steps:
 
-      - name: "Setup Python"
-        uses: 'actions/setup-python@v5'
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      - name: "Install pre-commit"
-        run: 'python -m pip install pre-commit'
+      - name: Install pre-commit
+        run: python -m pip install pre-commit
 
-      - name: "Checkout"
-        uses: 'actions/checkout@v4'
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: "Check with pre-commit"
-        run: 'pre-commit run --all-files --show-diff-on-failure'
+      - name: Check with pre-commit
+        run: pre-commit run --all-files --show-diff-on-failure
 
-  'build-job':
+  build-job:
 
-    runs-on: 'ubuntu-24.04'
+    runs-on: ubuntu-24.04
 
     steps:
 
-      - name: "Install apt packages"
-        run: |
+      - name: Install apt packages
+        run: >
           sudo apt-get --assume-yes --quiet update
-          sudo apt-get --assume-yes --quiet install --no-install-recommends graphviz latexmk tex-gyre texlive-fonts-recommended texlive-latex-extra texlive-latex-recommended
 
-      - name: "Setup Python"
-        uses: 'actions/setup-python@v5'
+          sudo apt-get --assume-yes --quiet install --no-install-recommends
+          graphviz
+          latexmk
+          tex-gyre
+          texlive-fonts-recommended
+          texlive-latex-extra
+          texlive-latex-recommended
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      - name: "Install tox"
-        run: 'python -m pip install tox'
+      - name: Install tox
+        run: python -m pip install tox
 
-      - name: "Checkout"
-        uses: 'actions/checkout@v4'
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: "Build"
-        run: 'tox run -e build'
+      - name: Build
+        run: tox run -e build
 
-      - name: "Upload artifact for GitHub Pages"
-        if: "github.ref_name == 'main'"
-        uses: 'actions/upload-pages-artifact@v3'
+      - name: Upload artifact for GitHub Pages
+        if: github.ref_name == 'main'
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: 'build/html'
+          path: build/html
 
-  'deploy-job':
+  deploy-job:
 
-    if: "github.ref_name == 'main'"
+    if: github.ref_name == 'main'
 
-    needs: ['build-job']
+    needs:
+      - build-job
 
     permissions:
-      contents: 'read'
-      pages: 'write'
-      id-token: 'write'
+      contents: read
+      pages: write
+      id-token: write
 
     environment:
-      name: 'github-pages'
-      url: '${{ steps.deployment.outputs.page_url }}'
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
-    runs-on: 'ubuntu-24.04'
+    runs-on: ubuntu-24.04
 
     steps:
 
-      - name: "Setup GitHub Pages"
-        uses: 'actions/configure-pages@v5'
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
 
-      - name: "Deploy to GitHub Pages"
-        id: 'deployment'
-        uses: 'actions/deploy-pages@v4'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
 
 ...  # EOF
