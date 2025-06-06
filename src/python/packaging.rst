@@ -121,7 +121,7 @@ Source distributions are *gzip*'ed *tar* files with the ``.tar.gz.`` extension.
     It is strongly recommended to always offer at least the *sdist* of a Python
     project (for example on PyPI). The reason is that it is always possible to
     use the *sdist* on any platform. On the other hand it is most likely
-    impossible to use a *bdist* targetted for another platform.
+    impossible to use a *bdist* targeted for another platform.
 
     So if no *bdist* of the project is available for the target platform, the
     *sdist* can still be used and eventually a target specific *bdist* can be

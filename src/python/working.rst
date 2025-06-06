@@ -71,7 +71,7 @@ Do not activate virtual environments
 ------------------------------------
 
 The scripts that are installed in a virtual environment (with *setuptools* at
-least) get a shebang with the full path to the Python interpeter from the
+least) get a shebang with the full path to the Python interpreter from the
 virtual environment. So there is no need to activate the virtual environment
 to call such scripts.
 

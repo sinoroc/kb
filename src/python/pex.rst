@@ -137,7 +137,7 @@ Inspect
 =======
 
 Since ``pex`` files are ``ZIP`` archives, inspecting their content is very
-straighforward.
+straightforward.
 
 .. code-block:: console
     :caption: shell console

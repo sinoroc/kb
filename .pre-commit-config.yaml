@@ -46,5 +46,10 @@ repos:
         args:
           - --strict
 
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.33.1
+    hooks:
+      - id: typos
+
 
 ...  # EOF
