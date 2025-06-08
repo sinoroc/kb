@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 class Injector:
 
     def __init__(self, multiple, word):
@@ -11,6 +12,7 @@ class Injector:
         if value % self._multiple == 0:
             result = self._output
         return result
+
 
 def fizz_buzz(start, end):
     injectors = [
@@ -34,8 +36,10 @@ def fizz_buzz(start, end):
         #
         print(output)
 
+
 def main():
     fizz_buzz(1, 50)
+
 
 if __name__ == '__main__':
     main()

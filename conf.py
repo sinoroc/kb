@@ -1,12 +1,10 @@
 """ Sphinx documentation generator configuration
 """
 
-
 AUTHOR = 'sinoroc'
 MASTER_DOCUMENT = 'contents'
 SUBTITLE = 'Bits of knowledge'
 TITLE = 'Sinoroc KB'
-
 
 #
 # General
@@ -26,13 +24,11 @@ templates_path = [
     'src/_templates',
 ]
 
-
 #
 # Project
 #
 
 project = TITLE
-
 
 #
 # HTML
@@ -59,18 +55,19 @@ html_title = TITLE
 html_use_modindex = False
 html_use_index = False
 
-
 #
 # Latex
 #
 
-latex_documents = [(
-    MASTER_DOCUMENT,
-    '{}.tex'.format(TITLE.lower().replace(' ', '')),
-    TITLE,
-    AUTHOR,
-    'manual',
-)]
+latex_documents = [
+    (
+        MASTER_DOCUMENT,
+        '{}.tex'.format(TITLE.lower().replace(' ', '')),
+        TITLE,
+        AUTHOR,
+        'manual',
+    )
+]
 
 latex_elements = {
     'papersize': 'a4paper',
@@ -80,6 +77,5 @@ latex_show_pagerefs = True
 latex_show_urls = 'footnote'
 
 latex_toplevel_sectioning = 'part'
-
 
 # EOF

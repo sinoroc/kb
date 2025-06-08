@@ -51,5 +51,10 @@ repos:
     hooks:
       - id: typos
 
+  - repo: https://github.com/google/yapf.git
+    rev: v0.43.0
+    hooks:
+      - id: yapf
+
 
 ...  # EOF
