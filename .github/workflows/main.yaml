@@ -34,6 +34,27 @@ jobs:
       - name: Check with pre-commit
         run: pre-commit run --all-files --show-diff-on-failure
 
+  pylint:
+
+    runs-on: ubuntu-24.04
+
+    steps:
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Pylint
+        run: python -m pip install 'pylint[spelling]'
+
+      - name: Run Pylint
+        run: pylint --output-format=github '**/*.py'
+
+
   build-job:
 
     runs-on: ubuntu-24.04

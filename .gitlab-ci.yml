@@ -8,6 +8,27 @@ pre-commit:
   script:
     - pre-commit run --all-files --show-diff-on-failure
 
+pylint:
+  image: python:3.10
+  before_script:
+    - apt-get --assume-yes --quiet update
+    - >
+      apt-get --assume-yes --quiet install --no-install-recommends
+      libenchant-2-2
+    - python -m pip install 'pylint[spelling]' pylint-gitlab
+  script:
+    - >
+      pylint
+      --output-format=pylint_gitlab.GitlabCodeClimateReporter
+      '**/*.py'
+      > pylint.json
+  artifacts:
+    paths:
+      - pylint.json
+    reports:
+      codequality: pylint.json
+    when: always
+
 .build:
   image: python:3.10
   before_script:
