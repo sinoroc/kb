@@ -19,24 +19,27 @@ Use cases
 
     ,Install Python,Install packages,Build distributions,Upload distributions,Manage virtual environments,Lock files
     build,no,no,yes,no,no,no
-    Flit,no,yes,yes,yes,yes,yes
-    Hatch,no,yes,yes,yes,yes,no
-    PDM,no,yes,yes,yes,yes,yes
+    Flit,no,yes,yes,yes,yes,no
+    Hatch,yes,yes,yes,yes,yes,no
+    PDM,yes,yes,yes,yes,yes,yes
     pip,no,yes,yes,no,no,yes
     pip-tools,no,yes,no,no,no,yes
     Pipenv,no,yes,no,no,yes,yes
     pipx,no,yes,no,no,no,no
-    Poetry,no,yes,yes,yes,yes,yes
+    Poetry,yes,yes,yes,yes,yes,yes
     pyenv,yes,no,no,no,no,no
-    Pyflow,yes,yes,yes,yes,yes,yes
-    setuptools,no,yes,yes,no,no,no
+    setuptools [#]_,no,no,no,no,no,no
     twine,no,no,no,yes,no,no
+    uv,yes,yes,yes,yes,yes,yes
     venv,no,no,no,no,yes,no
     virtualenv,no,no,no,no,yes,no
-    virtualenvwrapper,no,no,no,no,yes,no
     wheel,no,no,yes,no,no,no
 
 Build back-ends are not listed here, but they are in a dedicated section below.
+
+.. [#]  setuptools used to have some of these features
+        but they are all deprecated now.
+        setuptools' feature set is now reduced to ones of a build back-end.
 
 
 Comparisons
@@ -55,7 +58,7 @@ Development workflow tools
     Hatch,yes,yes,yes,yes,yes,yes,no
     PDM,yes,yes,yes,yes,yes,yes,yes
     Poetry,yes,yes,yes,yes,no,yes,yes
-    Pyflow,no,yes,yes,yes,no,no,yes
+    uv,yes,yes,yes,yes,yes,no,yes
 
 See also build back-end features in dedicated section.
 
@@ -125,11 +128,12 @@ Build back-ends
     ``maturin``,yes,yes,yes,*Cargo* (*Rust*)
     ``meson-python``,yes,yes,yes,*Meson*
     ``pdm-backend``,yes,yes,yes,no
-    ``poetry-core``,yes,no,yes,``build.py`` [#]_
+    ``poetry-core``,yes,yes,yes,``build.py`` [#]_
     ``pymsbuild``,yes,no,no,``_msbuild.py``
     ``scikit-build-core``,yes,yes,no,*CMake*
     ``setuptools``,yes,yes,yes,``setup.py``
     ``trampolim``,yes,yes,no,no
+    ``uv-build``,yes,yes,yes,no
     ``whey``,yes,yes,yes,no
 
 .. [#]  Poetry has an undocumented feature allowing
@@ -171,7 +175,6 @@ Manage virtual environments
     tox,yes,yes [#]_
     venv,no,no
     virtualenv,yes,no
-    virtualenvwrapper,yes,no
 
 Unlike the other tools presented in this section,
 ``venv`` is part of Python's own standard library,
