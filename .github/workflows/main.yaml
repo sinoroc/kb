@@ -88,7 +88,6 @@ jobs:
         run: tox run -e build
 
       - name: Upload artifact for GitHub Pages
-        if: github.ref_name == 'main'
         uses: actions/upload-pages-artifact@v4
         with:
           path: build/html

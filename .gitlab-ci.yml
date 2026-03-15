@@ -1,6 +1,14 @@
 ---
 
 
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - if: $CI_COMMIT_BRANCH
+
+
 pre-commit:
   image: python:3.14
   before_script:
@@ -28,6 +36,7 @@ pylint:
 
 
 .build:
+  stage: deploy
   image: python:3.14-trixie
   before_script:
     - apt-get --assume-yes --quiet update
@@ -45,17 +54,30 @@ pylint:
     - cp -r build/html public
 
 
-build:
+deploy-preview:
   extends: .build
-
-
-pages:
-  extends: .build
+  rules:
+    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
   artifacts:
     paths:
       - public
-  only:
-    - main
+  after_script:
+    - echo "Preview at ${CI_ENVIRONMENT_URL}"
+  environment:
+    auto_stop_in: one hour
+    deployment_tier: development
+    name: review/$CI_COMMIT_REF_SLUG
+    # yamllint disable-line rule:quoted-strings
+    url: "https://${CI_PAGES_HOSTNAME}\
+      /-/${CI_PROJECT_TITLE}/-/jobs/${CI_JOB_ID}/artifacts\
+      /public/index.html"
+
+
+deploy-pages:
+  extends: .build
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  pages: true
 
 
 ...  # EOF
