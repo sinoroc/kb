@@ -2,14 +2,15 @@
 
 
 pre-commit:
-  image: python:3.10
+  image: python:3.14
   before_script:
     - python -m pip install pre-commit
   script:
     - pre-commit run --all-files --show-diff-on-failure
 
+
 pylint:
-  image: python:3.10
+  image: python:3.14-trixie
   before_script:
     - apt-get --assume-yes --quiet update
     - >
@@ -19,18 +20,15 @@ pylint:
   script:
     - >
       pylint
-      --output-format=pylint_gitlab.GitlabCodeClimateReporter
+      --output-format=pylint_gitlab.GitlabCodeClimateReporter:pylint.json,colorized
       '**/*.py'
-      > pylint.json
   artifacts:
-    paths:
-      - pylint.json
     reports:
       codequality: pylint.json
-    when: always
+
 
 .build:
-  image: python:3.10
+  image: python:3.14-trixie
   before_script:
     - apt-get --assume-yes --quiet update
     - >
@@ -43,11 +41,13 @@ pylint:
       texlive-latex-recommended
     - pip install tox
   script:
-    - tox -e build
+    - tox run -e build
     - cp -r build/html public
+
 
 build:
   extends: .build
+
 
 pages:
   extends: .build
